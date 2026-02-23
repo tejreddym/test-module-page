@@ -1,42 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, ChevronDown, LogIn } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from './assets/logo.png';
 
 const Header = () => {
+    const [showMore, setShowMore] = useState(false);
+    const location = useLocation();
+
     const navItems = [
-        { name: 'Home', active: true },
+        { name: 'Home', path: '/', active: location.pathname === '/' },
         { name: 'Colleges', hasDropdown: true },
         { name: 'Courses', hasDropdown: true },
         { name: 'Exams', hasDropdown: true },
         { name: 'Careers', hasDropdown: true, highlight: true },
         { name: 'News' },
-        { name: 'More', hasDropdown: true },
+        {
+            name: 'More', hasDropdown: true, dropdownItems: [
+                { name: 'Exam Library', path: '/' }
+            ]
+        },
     ];
 
     return (
         <header style={styles.header}>
             <div className="container" style={styles.headerContainer}>
                 {/* Logo Section */}
-                <div style={styles.logoContainer}>
+                <Link to="/" style={styles.logoContainer}>
                     <img src={logo} alt="College Mentor" style={styles.logo} />
-                </div>
+                </Link>
 
                 {/* Navigation Section */}
                 <nav style={styles.nav}>
                     <ul style={styles.navList}>
                         {navItems.map((item) => (
-                            <li key={item.name} style={styles.navItem}>
-                                <a
-                                    href={`#${item.name.toLowerCase()}`}
-                                    style={{
-                                        ...styles.navLink,
-                                        color: item.active ? 'var(--primary-blue)' : item.highlight ? 'var(--accent-orange)' : 'var(--text-dark)',
-                                        fontWeight: item.active || item.highlight ? '600' : '500',
-                                    }}
-                                >
-                                    {item.name}
-                                    {item.hasDropdown && <ChevronDown size={16} style={styles.chevron} />}
-                                </a>
+                            <li
+                                key={item.name}
+                                style={styles.navItem}
+                                onMouseEnter={() => item.name === 'More' && setShowMore(true)}
+                                onMouseLeave={() => item.name === 'More' && setShowMore(false)}
+                            >
+                                {item.path ? (
+                                    <Link
+                                        to={item.path}
+                                        style={{
+                                            ...styles.navLink,
+                                            color: item.active ? 'var(--primary-blue)' : item.highlight ? 'var(--accent-orange)' : 'var(--text-dark)',
+                                            fontWeight: item.active || item.highlight ? '600' : '500',
+                                        }}
+                                    >
+                                        {item.name}
+                                        {item.hasDropdown && <ChevronDown size={16} style={styles.chevron} />}
+                                    </Link>
+                                ) : (
+                                    <div
+                                        style={{
+                                            ...styles.navLink,
+                                            color: item.highlight ? 'var(--accent-orange)' : 'var(--text-dark)',
+                                            fontWeight: item.highlight ? '600' : '500',
+                                            cursor: 'pointer'
+                                        }}
+                                    >
+                                        {item.name}
+                                        {item.hasDropdown && <ChevronDown size={16} style={styles.chevron} />}
+                                    </div>
+                                )}
+
+                                {/* Dropdown Menu for "More" */}
+                                {item.name === 'More' && showMore && (
+                                    <div style={styles.dropdown}>
+                                        {item.dropdownItems.map((subItem) => (
+                                            <Link
+                                                key={subItem.name}
+                                                to={subItem.path}
+                                                style={styles.dropdownItem}
+                                                onClick={() => setShowMore(false)}
+                                            >
+                                                {subItem.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
                             </li>
                         ))}
                     </ul>
@@ -74,6 +117,7 @@ const styles = {
     logoContainer: {
         display: 'flex',
         alignItems: 'center',
+        textDecoration: 'none'
     },
     logo: {
         height: '45px',
@@ -91,15 +135,39 @@ const styles = {
     navItem: {
         display: 'flex',
         alignItems: 'center',
+        position: 'relative'
     },
     navLink: {
         display: 'flex',
         alignItems: 'center',
         gap: '0.25rem',
         fontSize: '0.95rem',
+        textDecoration: 'none'
     },
     chevron: {
         marginTop: '2px',
+    },
+    dropdown: {
+        position: 'absolute',
+        top: '100%',
+        left: '0',
+        backgroundColor: '#ffffff',
+        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+        borderRadius: '8px',
+        padding: '0.5rem 0',
+        minWidth: '180px',
+        zIndex: 1001,
+        border: '1px solid rgba(0,0,0,0.05)',
+        marginTop: '0.5rem'
+    },
+    dropdownItem: {
+        display: 'block',
+        padding: '0.75rem 1.25rem',
+        fontSize: '0.9rem',
+        color: 'var(--text-dark)',
+        textDecoration: 'none',
+        transition: 'all 0.2s ease',
+        fontWeight: '500'
     },
     actions: {
         display: 'flex',
