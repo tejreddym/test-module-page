@@ -4,7 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>test-module-page</title>
+    <title>College Mentor | India's #1 Exam Prep Platform</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+          darkMode: "class",
+          theme: {
+              extend: {
+                  colors: {
+                      "primary-alt": "#113cbb",
+                      "background-light": "#f6f6f8",
+                      "background-dark": "#101522",
+                  },
+                  fontFamily: {
+                      "sans": ["neuzeit-grotesk", "Helvetica", "Arial", "sans-serif"],
+                      "serif": ["Roboto Slab", "serif"],
+                      "display": ["neuzeit-grotesk", "Helvetica", "Arial", "sans-serif"]
+                  },
+                  backgroundImage: {
+                      "brand-gradient": "linear-gradient(135deg, #173CBA 0%, #00C798 100%)"
+                  }
+              },
+          },
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
