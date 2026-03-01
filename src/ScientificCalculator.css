@@ -1,0 +1,151 @@
+.calc-container {
+    width: 320px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    position: fixed;
+    top: 100px;
+    left: 40%;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #e5e7eb;
+}
+
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f4f6;
+    cursor: grab;
+    user-select: none;
+}
+
+.calc-container.dragging {
+    transition: none;
+    opacity: 0.95;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.calc-container.dragging .calc-header {
+    cursor: grabbing;
+}
+
+.calc-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.calc-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.yellow {
+    background: #fbbf24;
+}
+
+.dot.red {
+    background: #f87171;
+}
+
+.calc-display-section {
+    background: #f8faff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    text-align: right;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.equation-preview {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    min-height: 1rem;
+}
+
+.main-display {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #111827;
+    overflow-x: auto;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.calc-grid button {
+    height: 48px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-sci {
+    background: transparent;
+    color: #1f2937;
+    font-size: 1rem !important;
+}
+
+.btn-sci:hover {
+    background: #f3f4f6;
+}
+
+.btn-sci.active {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+.btn-num {
+    background: #e5e7eb;
+    color: #111827;
+    font-size: 1.125rem !important;
+    font-weight: 700 !important;
+}
+
+.btn-num:hover {
+    background: #d1d5db;
+}
+
+.btn-op {
+    background: #ffedd5;
+    color: #f97316;
+    font-size: 1.125rem !important;
+}
+
+.btn-op:hover {
+    background: #fed7aa;
+}
+
+.btn-eq {
+    background: #3b82f6;
+    color: #fff;
+    font-size: 1.125rem !important;
+}
+
+.btn-eq:hover {
+    background: #2563eb;
+}
+
+.btn-backspace:hover {
+    background: #fee2e2 !important;
+}

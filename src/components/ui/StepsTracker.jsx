@@ -20,7 +20,7 @@ const StepsTracker = ({ currentStep }) => {
                     <React.Fragment key={step.id}>
                         {index > 0 && <span className="text-slate-300">›</span>}
 
-                        <div className={`flex items-center gap-1.5 sm:gap-2 ${isActive ? 'text-[#113cbb]' : isDone ? 'text-slate-700' : 'text-slate-400'}`}>
+                        <div className={`flex items-center gap-1.5 sm:gap-2 ${isActive ? 'text-cm-primary' : isDone ? 'text-slate-700' : 'text-slate-400'}`}>
                             {isDone ? (
                                 <Link
                                     to={step.path || '#'}
@@ -32,7 +32,7 @@ const StepsTracker = ({ currentStep }) => {
                                     }}
                                     className="flex items-center gap-1.5 sm:gap-2 hover:text-blue-700 transition-colors"
                                 >
-                                    <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-cm-success/10 flex items-center justify-center text-cm-success">
                                         <span className="material-symbols-outlined text-[10px] sm:text-[14px] font-bold">check</span>
                                     </div>
                                     {step.label}
@@ -40,7 +40,7 @@ const StepsTracker = ({ currentStep }) => {
                             ) : (
                                 <>
                                     <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs
-                                        ${isActive ? 'bg-[#113cbb] text-white' : 'bg-slate-100 text-slate-400'}`}
+                                        ${isActive ? 'bg-cm-primary text-white' : 'bg-slate-100 text-slate-400'}`}
                                     >
                                         {step.id}
                                     </div>

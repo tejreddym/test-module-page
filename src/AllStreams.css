@@ -1,0 +1,187 @@
+.all-streams-section {
+    padding: 6rem 0;
+    background-color: #fdfdf5;
+    /* Consistent off-white background */
+    min-height: auto;
+}
+
+.all-streams-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #1a1a1a;
+}
+
+.all-streams-title {
+    font-size: 3rem;
+    font-weight: 800;
+    /* Adjusted to 800 to match StepDesign h1 */
+    color: #0f172a;
+    margin-bottom: 1rem;
+}
+
+.all-streams-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.all-streams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.all-stream-card {
+    border-radius: 1.5rem;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.all-stream-card .stream-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.all-stream-card .stream-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, var(--accent-color), rgba(15, 23, 42, 0.95));
+    opacity: 0.88;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.all-stream-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.all-stream-card:hover .stream-bg-image {
+    transform: scale(1.1);
+}
+
+.all-stream-card:hover .stream-overlay {
+    opacity: 0.75;
+}
+
+.stream-icon-wrapper {
+    width: 4rem;
+    height: 4rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.75rem;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.all-stream-card:hover .stream-icon-wrapper {
+    background-color: #fff;
+    color: var(--accent-color);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+}
+
+.stream-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    color: #fff;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.explore-arrow {
+    transition: transform 0.3s ease;
+}
+
+.all-stream-card:hover .explore-btn {
+    background-color: #fff;
+    color: var(--accent-color);
+    border-color: #fff;
+}
+
+.all-stream-card:hover .explore-arrow {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .all-streams-title {
+        font-size: 2.5rem;
+    }
+
+    .back-link {
+        position: relative;
+        top: 0;
+        transform: none;
+        margin-bottom: 2rem;
+        justify-content: center;
+    }
+}

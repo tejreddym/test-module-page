@@ -1,38 +1,63 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>College Mentor | India's #1 Exam Prep Platform</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-          darkMode: "class",
-          theme: {
-              extend: {
-                  colors: {
-                      "primary-alt": "#113cbb",
-                      "background-light": "#f6f6f8",
-                      "background-dark": "#101522",
-                  },
-                  fontFamily: {
-                      "sans": ["neuzeit-grotesk", "Helvetica", "Arial", "sans-serif"],
-                      "serif": ["Roboto Slab", "serif"],
-                      "display": ["neuzeit-grotesk", "Helvetica", "Arial", "sans-serif"]
-                  },
-                  backgroundImage: {
-                      "brand-gradient": "linear-gradient(135deg, #173CBA 0%, #00C798 100%)"
-                  }
-              },
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Mentor | India's #1 Exam Prep Platform</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-alt": "#173CBA",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101522",
+            "cm": {
+              "primary": "#113CBB",
+              "accent": "#426DF8",
+              "lemon": "#C6F95F",
+              "teal": "#14B8A6",
+              "green": "#0FBA81",
+              "dark": "#0F172A",
+              "physics": "#3B82F6",
+              "maths": "#F97316",
+              "chemistry": "#10B981",
+              "logical": "#8B5CF6",
+              "urgency": "#EF4444",
+              "success": "#10B981",
+              "warning": "#F97316",
+              "error": "#EF4444",
+              "info": "#3B82F6",
+              "secondary-white": "#F8FAFC",
+              "college-blue": "#E0F2FE",
+              "secondary-green": "#F0FDFA",
+              "secondary-orange": "#FFFBEB"
+            }
           },
-      }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+          fontFamily: {
+            "sans": ["neuzeit-grotesk", "Helvetica", "Arial", "sans-serif"],
+            "serif": ["Roboto Slab", "serif"],
+            "display": ["neuzeit-grotesk", "Helvetica", "Arial", "sans-serif"]
+          },
+          backgroundImage: {
+            "brand-gradient": "linear-gradient(135deg, #173CBA 0%, #00C798 100%)"
+          }
+        },
+      },
+    }
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

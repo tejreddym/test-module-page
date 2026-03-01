@@ -16,7 +16,18 @@ const Header = () => {
         { name: 'News' },
         {
             name: 'More', hasDropdown: true, dropdownItems: [
-                { name: 'Exam Library', path: '/' }
+                { name: 'Exam Library', path: '/' },
+                { name: 'Stream-wise Mock Tests', path: '/stream-wise-tests' },
+                { name: 'All Streams', path: '/all-streams' },
+                { name: 'Stream Tests', path: '/stream-mock-tests' },
+                { name: 'Test Instructions', path: '/test-instructions' },
+                { name: 'Mock Exam', path: '/mock-exam' },
+                { name: 'Step Design', path: '/step-design' },
+                { name: 'Top Mentors', path: '/top-mentors' },
+                { name: 'Test Analytics', path: '/test-analytics' },
+                { name: 'Study Planner', path: '/study-planner' },
+                { name: 'User Profile', path: '/user-profile' },
+                { name: 'Rank Predictor', path: '/rank-predictor' }
             ]
         },
     ];
@@ -103,7 +114,7 @@ const Header = () => {
 const styles = {
     header: {
         backgroundColor: 'var(--secondary-bg)',
-        padding: '1.25rem 0',
+        padding: '0.6rem 0',
         position: 'sticky',
         top: 0,
         zIndex: 1000,
@@ -120,7 +131,7 @@ const styles = {
         textDecoration: 'none'
     },
     logo: {
-        height: '45px',
+        height: '36px',
         objectFit: 'contain',
     },
     nav: {
@@ -129,7 +140,7 @@ const styles = {
     },
     navList: {
         display: 'flex',
-        gap: '1.5rem',
+        gap: '1.2rem',
         alignItems: 'center',
     },
     navItem: {
@@ -141,7 +152,7 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         gap: '0.25rem',
-        fontSize: '0.95rem',
+        fontSize: '0.9rem',
         textDecoration: 'none'
     },
     chevron: {
@@ -172,24 +183,24 @@ const styles = {
     actions: {
         display: 'flex',
         alignItems: 'center',
-        gap: '1.5rem',
+        gap: '1rem',
     },
     searchButton: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0.5rem',
+        padding: '0.4rem',
     },
     loginButton: {
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem',
-        padding: '0.6rem 1.5rem',
-        borderRadius: '8px',
+        padding: '0.5rem 1.2rem',
+        borderRadius: '6px',
         border: '1.5px solid var(--primary-green)',
         color: 'var(--primary-green)',
         fontWeight: '600',
-        fontSize: '0.95rem',
+        fontSize: '0.85rem',
         transition: 'all 0.2s ease',
     },
     loginIcon: {

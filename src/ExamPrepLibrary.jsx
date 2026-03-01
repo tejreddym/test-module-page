@@ -4,6 +4,11 @@ import { ArrowRight, Users, Target, Trophy } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 
 import AnimatedCounter from './components/ui/AnimatedCounter';
+import DeskCalendar3D from './components/ui/DeskCalendar3D';
+import dotsPattern from './assets/dots-to-bottom.svg';
+import TopMentors from './TopMentors';
+import FlashcardFAQ from './FlashcardFAQ';
+import StepDesign from './StepDesign';
 
 const ExamPrepLibrary = () => {
     const constraintsRef = useRef(null);
@@ -18,19 +23,17 @@ const ExamPrepLibrary = () => {
     }, []);
 
     return (
-        <div className="exam-prep-library font-display bg-[#f6f6f8] dark:bg-[#101522] text-slate-900 dark:text-slate-100 antialiased min-h-screen">
+        <div className="exam-prep-library font-display bg-[#d2efee] dark:bg-[#101522] text-slate-900 dark:text-slate-100 antialiased min-h-screen">
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .hero-gradient {
-                    background-image: radial-gradient(rgba(23, 60, 186, 0.15) 1.5px, transparent 1.5px),
-                                      radial-gradient(circle at top right, rgba(17, 60, 187, 0.08), transparent),
-                                      radial-gradient(circle at bottom left, rgba(17, 60, 187, 0.05), transparent);
-                    background-size: 40px 40px, 100% 100%, 100% 100%;
-                    background-position: 0 0, 0 0, 0 0;
+                    background-color: #7cdedb 20%;
+                    background-image: radial-gradient(circle at top right, rgba(17, 60, 187, 0.05), transparent),
+                                      radial-gradient(circle at bottom left, rgba(0, 199, 152, 0.05), transparent);
                 }
+
                 .dark .hero-gradient {
-                    background-image: radial-gradient(rgba(0, 199, 152, 0.15) 1.5px, transparent 1.5px),
-                                      radial-gradient(circle at top right, rgba(17, 60, 187, 0.15), transparent),
+                    background-image: radial-gradient(circle at top right, rgba(17, 60, 187, 0.15), transparent),
                                       radial-gradient(circle at bottom left, rgba(17, 60, 187, 0.1), transparent);
                 }
                 .btn-gradient {
@@ -57,9 +60,35 @@ const ExamPrepLibrary = () => {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative hero-gradient overflow-hidden pt-16 pb-24 px-6">
-                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="z-10 text-center lg:text-left">
+                <section className="relative hero-gradient overflow-visible pt-10 pb-16 lg:pt-16 lg:pb-24 px-2 lg:px-6 h-[calc(100vh-80px)] max-h-[100vh] flex items-center hero-with-dots-bottom">
+
+                    <style dangerouslySetInnerHTML={{
+                        __html: `
+                        .hero-with-dots-bottom::after {
+                            display: block;
+                            position: absolute;
+                            content: "";
+                            left: 0;
+                            right: 0;
+                            /* Move them inside the view perfectly */
+                            z-index: 10;
+                            height: 60px;
+                            bottom: 0px;
+                            background: url('${dotsPattern}') repeat-x left bottom;
+                            background-size: 15px auto;
+                            pointer-events: none;
+                        }
+                        @media (min-width: 768px) {
+                            .hero-with-dots-bottom::after {
+                                height: 120px;
+                                bottom: 0px;
+                                background-size: 30px auto;
+                            }
+                        }
+                    `}} />
+
+                    <div className="relative w-full h-full z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-stretch lg:items-center py-6 lg:py-0">
+                        <div className="z-10 text-left w-full h-full flex flex-col justify-between lg:justify-center">
                             <div className="hero-badge">
                                 <span className="badge-icon">🎯</span>
                                 <span className="badge-text">India's #1 Exam Prep Platform</span>
@@ -71,16 +100,16 @@ const ExamPrepLibrary = () => {
                             <p className="hero-subtitle">
                                 Master your exams with personalized mock tests, AI-powered analytics, and 1:1 mentorship - everything you need to crack your dream exam.
                             </p>
-                            <div className="hero-actions">
-                                <button className="btn-primary">
-                                    Start Free Mock Test <ArrowRight size={20} />
+                            <div className="flex flex-row gap-3 w-full mb-4 lg:mb-16 mt-2">
+                                <button className="btn-primary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:min-w-[200px] lg:px-12 bg-gradient-to-br from-[#173CBA] to-[#00C798] text-white rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-blue-600 hover:shadow-lg">
+                                    Start Free Mock Test <ArrowRight className="w-5 h-5 lg:w-5 lg:h-5" />
                                 </button>
-                                <button className="btn-secondary">
+                                <button className="btn-secondary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:px-8 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-slate-50">
                                     Explore Plans
                                 </button>
                             </div>
 
-                            <div className="hero-stats">
+                            <div className="hero-stats grid grid-cols-1 sm:grid-cols-3 gap-4 lg:flex lg:gap-10 mt-2 lg:mt-0 lg:mb-0">
                                 {stats.map((stat, index) => (
                                     <div key={index} className="stat-item">
                                         <div className="stat-icon-wrapper">
@@ -95,7 +124,7 @@ const ExamPrepLibrary = () => {
                             </div>
                         </div>
 
-                        <div ref={constraintsRef} className="hidden lg:flex relative h-[500px] w-full items-center justify-center">
+                        <div ref={constraintsRef} className="absolute inset-0 z-0 opacity-30 lg:opacity-100 pointer-events-none lg:pointer-events-auto lg:relative h-full lg:h-[500px] w-full flex items-center justify-center overflow-hidden lg:overflow-visible">
                             <div className="absolute -top-10 -right-10 w-72 h-72 bg-blue-600/20 rounded-full blur-[80px]"></div>
                             <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-blue-400/20 rounded-full blur-[80px]"></div>
 
@@ -105,8 +134,17 @@ const ExamPrepLibrary = () => {
                                 dragConstraints={{ top: -50, left: -200, right: 100, bottom: 200 }}
                                 dragElastic={0.2}
                                 whileHover={{ scale: 1.05, zIndex: 100 }} whileDrag={{ scale: 1.05, zIndex: 100, cursor: "grabbing" }}
-                                style={{ rotate: 3, cursor: "grab" }}
-                                className="absolute top-0 right-10 z-20 glass-card p-5 rounded-2xl shadow-xl w-48"
+                                initial={{ scale: 0, opacity: 0, rotate: 3, x: 0, y: 0 }}
+                                animate={{ scale: 1, opacity: 1, x: [0, 20, -15, 0], y: [0, -15, 10, 0], rotate: [3, 6, 0, 3] }}
+                                transition={{
+                                    scale: { type: "spring", bounce: 0.5, delay: 0.1 },
+                                    opacity: { delay: 0.1 },
+                                    x: { repeat: Infinity, duration: 15, ease: "easeInOut" },
+                                    y: { repeat: Infinity, duration: 15, ease: "easeInOut" },
+                                    rotate: { repeat: Infinity, duration: 15, ease: "easeInOut" }
+                                }}
+                                style={{ cursor: "grab" }}
+                                className="absolute top-0 right-0 lg:top-0 lg:right-10 z-20 glass-card p-4 lg:p-5 rounded-2xl shadow-xl w-44 lg:w-48 scale-[0.65] lg:scale-100 origin-top-right block"
                             >
                                 <div className="flex justify-between items-center mb-3">
                                     <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Test Progress</h3>
@@ -130,8 +168,17 @@ const ExamPrepLibrary = () => {
                                 dragConstraints={{ top: -300, left: -50, right: 200, bottom: 50 }}
                                 dragElastic={0.2}
                                 whileHover={{ scale: 1.05, zIndex: 100 }} whileDrag={{ scale: 1.05, zIndex: 100, cursor: "grabbing" }}
-                                style={{ rotate: -2, cursor: "grab" }}
-                                className="absolute bottom-12 left-4 z-20 glass-card p-5 rounded-2xl shadow-xl w-64"
+                                initial={{ scale: 0, opacity: 0, rotate: -2, x: 0, y: 0 }}
+                                animate={{ scale: 1, opacity: 1, x: [0, -25, 15, 0], y: [0, 20, -10, 0], rotate: [-2, -5, 2, -2] }}
+                                transition={{
+                                    scale: { type: "spring", bounce: 0.5, delay: 0.2 },
+                                    opacity: { delay: 0.2 },
+                                    x: { repeat: Infinity, duration: 18, ease: "easeInOut" },
+                                    y: { repeat: Infinity, duration: 18, ease: "easeInOut" },
+                                    rotate: { repeat: Infinity, duration: 18, ease: "easeInOut" }
+                                }}
+                                style={{ cursor: "grab" }}
+                                className="absolute bottom-20 left-0 lg:bottom-12 lg:left-4 z-20 glass-card p-4 lg:p-5 rounded-2xl shadow-xl w-48 lg:w-64 scale-[0.65] lg:scale-100 origin-bottom-left block"
                             >
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Leaderboard</h3>
@@ -164,8 +211,16 @@ const ExamPrepLibrary = () => {
                                 dragConstraints={{ top: -150, left: -150, right: 150, bottom: 150 }}
                                 dragElastic={0.2}
                                 whileHover={{ scale: 1.05, zIndex: 100 }} whileDrag={{ scale: 1.05, zIndex: 100, cursor: "grabbing" }}
-                                style={{ x: "-50%", y: "-50%", cursor: "grab" }}
-                                className="absolute top-1/2 left-1/2 z-10 glass-card p-6 rounded-2xl shadow-2xl w-80 border-t-4 border-t-[#113cbb]"
+                                initial={{ scale: 0, opacity: 0, x: "-50%", y: "-50%" }}
+                                animate={{ scale: 1, opacity: 1, x: ["-50%", "-46%", "-54%", "-50%"], y: ["-50%", "-54%", "-46%", "-50%"] }}
+                                transition={{
+                                    scale: { type: "spring", bounce: 0.5, delay: 0.3 },
+                                    opacity: { delay: 0.3 },
+                                    x: { repeat: Infinity, duration: 20, ease: "easeInOut" },
+                                    y: { repeat: Infinity, duration: 20, ease: "easeInOut" }
+                                }}
+                                style={{ zIndex: 10, cursor: "grab" }}
+                                className="absolute top-0 left-0 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:translate-y-0 glass-card p-4 lg:p-6 rounded-2xl shadow-2xl w-56 lg:w-80 border-t-4 border-t-[#113cbb] scale-[0.65] lg:scale-100 origin-top-left block"
                             >
                                 <div className="flex justify-between items-end mb-6">
                                     <div>
@@ -189,8 +244,16 @@ const ExamPrepLibrary = () => {
                                 dragConstraints={{ top: -50, left: -50, right: 250, bottom: 350 }}
                                 dragElastic={0.2}
                                 whileHover={{ scale: 1.05, zIndex: 100 }} whileDrag={{ scale: 1.05, zIndex: 100, cursor: "grabbing" }}
+                                initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
+                                animate={{ scale: 1, opacity: 1, x: [0, 15, -10, 0], y: [0, -15, 12, 0] }}
+                                transition={{
+                                    scale: { type: "spring", bounce: 0.5, delay: 0.4 },
+                                    opacity: { delay: 0.4 },
+                                    x: { repeat: Infinity, duration: 12, ease: "easeInOut" },
+                                    y: { repeat: Infinity, duration: 12, ease: "easeInOut" }
+                                }}
                                 style={{ cursor: "grab" }}
-                                className="absolute -top-6 left-10 z-30"
+                                className="hidden lg:block absolute top-10 lg:-top-6 left-1/2 -translate-x-1/2 lg:left-10 lg:translate-x-0 z-30 scale-75 lg:scale-100 pointer-events-auto"
                             >
                                 <div className="bg-white dark:bg-slate-800 rounded-2xl rounded-bl-none shadow-xl border border-blue-600/20 p-4 max-w-[200px] relative">
                                     <div className="flex items-center gap-3 mb-2">
@@ -211,13 +274,22 @@ const ExamPrepLibrary = () => {
                                 dragConstraints={{ top: -350, left: -250, right: 50, bottom: 50 }}
                                 dragElastic={0.2}
                                 whileHover={{ scale: 1.05, zIndex: 100 }} whileDrag={{ scale: 1.05, zIndex: 100, cursor: "grabbing" }}
-                                style={{ rotate: 2, cursor: "grab" }}
-                                className="absolute bottom-0 right-4 z-30 glass-card p-4 rounded-2xl shadow-xl w-56 border-b-4 border-b-green-500"
+                                initial={{ scale: 0, opacity: 0, rotate: 2, x: 0, y: 0 }}
+                                animate={{ scale: 1, opacity: 1, x: [0, -20, 15, 0], y: [0, -15, 10, 0], rotate: [2, -1, 4, 2] }}
+                                transition={{
+                                    scale: { type: "spring", bounce: 0.5, delay: 0.5 },
+                                    opacity: { delay: 0.5 },
+                                    x: { repeat: Infinity, duration: 16, ease: "easeInOut" },
+                                    y: { repeat: Infinity, duration: 16, ease: "easeInOut" },
+                                    rotate: { repeat: Infinity, duration: 16, ease: "easeInOut" }
+                                }}
+                                style={{ cursor: "grab" }}
+                                className="absolute bottom-16 right-0 lg:bottom-0 lg:right-4 z-30 glass-card p-3 lg:p-4 rounded-xl shadow-lg w-48 lg:w-60 scale-[0.65] lg:scale-100 origin-bottom-right block pointer-events-auto"
                             >
                                 <div className="flex items-center gap-2 mb-3">
                                     <div className="flex -space-x-2">
                                         {[1, 2, 3, 4].map(i => (
-                                            <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-slate-800 bg-slate-200 overflow-hidden shadow-sm">
+                                            <div key={i} className="w-9 h-9 lg:w-8 lg:h-8 rounded-full border-2 border-white dark:border-slate-800 bg-slate-200 overflow-hidden shadow-sm">
                                                 <img src={`https://i.pravatar.cc/100?u=${i + 10}`} alt="Student" className="w-full h-full object-cover" />
                                             </div>
                                         ))}
@@ -238,190 +310,206 @@ const ExamPrepLibrary = () => {
                 </section>
 
                 {/* Path to Success Section */}
-                <section className="py-24 px-6 bg-slate-50 dark:bg-slate-900/30 overflow-hidden relative">
-                    <div className="max-w-7xl mx-auto relative z-10">
-                        <div className="text-center mb-24">
-                            <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tight text-slate-900 dark:text-white">Your Path to <span className="text-[#113cbb]">Success</span></h2>
-                            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                                Experience a streamlined journey from preparation to perfection with our scientifically designed workflow.
-                            </p>
-                        </div>
-                        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                            {[
-                                { step: '01', icon: 'target', title: 'Select Your Goal', desc: 'Choose from our extensive library of 50+ competitive exams. Tailored paths for JEE, NEET, or UPSC.' },
-                                { step: '02', icon: 'timer_play', title: 'Attempt Mock Test', desc: 'Experience real exam pressure. Interface mimics NTA pattern with strict timing and negative marking.', highlight: true },
-                                { step: '03', icon: 'insights', title: 'Unlock Analytics', desc: 'Granular breakdown of performance. Identify weak topics and improve your rank instantly.' }
-                            ].map((item, i) => (
-                                <div key={i} className={`group relative bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-xl border border-slate-100 dark:border-slate-700 hover:-translate-y-4 transition-all duration-500 ${item.highlight ? 'shadow-[#113cbb]/20 border-[#113cbb]/10 dark:border-[#113cbb]/20 z-20' : ''}`}>
-                                    <div className={`absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full border-4 border-white dark:border-slate-800 shadow-xl flex items-center justify-center font-black text-3xl z-20 ${item.highlight ? 'bg-gradient-to-br from-[#113cbb] to-blue-600 text-white shadow-[#113cbb]/40' : 'bg-gradient-to-br from-white to-blue-50 dark:from-slate-700 dark:to-slate-800 text-[#113cbb]'}`}>
-                                        {item.step}
-                                    </div>
-                                    <div className="mt-8 text-center">
-                                        <div className="w-24 h-24 mx-auto bg-gradient-to-tr from-blue-100 to-white dark:from-slate-700 dark:to-slate-600 rounded-3xl flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-500">
-                                            <span className="material-symbols-outlined text-5xl text-[#113cbb]" style={{ fontVariationSettings: "'FILL' 1, 'wght' 600" }}>{item.icon}</span>
-                                        </div>
-                                        <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">{item.title}</h3>
-                                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">{item.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                <StepDesign />
 
                 {/* Explore Streams Section */}
-                <section className="py-24 px-6 bg-white dark:bg-slate-950">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <section className="pt-[98px] pb-16 px-6 bg-white dark:bg-slate-950">
+                    <div className="max-w-[1400px] mx-auto px-6">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
                             <div>
                                 <div className="flex items-center gap-2 mb-2">
-                                    <span className="h-1 w-8 bg-[#113cbb] rounded-full"></span>
-                                    <span className="text-[#113cbb] font-bold uppercase tracking-widest text-xs">Categories</span>
+                                    <span className="h-1 w-8 bg-cm-primary rounded-full"></span>
+                                    <span className="text-cm-primary font-bold uppercase tracking-widest text-xs">Categories</span>
                                 </div>
                                 <h2 className="text-3xl lg:text-4xl font-black mb-3 text-slate-900 dark:text-white">Explore Streams</h2>
                                 <p className="text-slate-500 text-lg">Curated tests designed by experts for every career path</p>
                             </div>
-                            <button className="group bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-bold flex items-center gap-3 hover:shadow-xl hover:shadow-[#113cbb]/20 hover:scale-105 transition-all duration-300">
+                            <Link to="/all-streams" className="group bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-xl font-bold flex items-center gap-3 hover:shadow-xl hover:shadow-cm-primary/20 hover:scale-105 transition-all duration-300">
                                 <span>View All Streams</span>
                                 <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                            </button>
+                            </Link>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px]">
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[400px]">
                             {/* Engineering Card */}
-                            <div className="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                                <div className="absolute top-0 left-0 w-full h-full card-pattern-engineering opacity-20"></div>
-                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 border border-white/30">
-                                    <span className="material-symbols-outlined text-sm">local_fire_department</span> HOT
-                                </div>
-                                <div className="relative z-10 p-8 flex flex-col h-full justify-between">
+                            <div className="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-3xl text-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="Engineering" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-orange-900/90 via-orange-900/40 to-black/30"></div>
+
+                                <div className="relative z-10 p-6 flex flex-col h-full justify-between">
                                     <div>
-                                        <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 shadow-inner border border-white/10">
-                                            <span className="material-symbols-outlined text-4xl">engineering</span>
+                                        <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-white/20">
+                                            <span className="material-symbols-outlined text-3xl">engineering</span>
                                         </div>
-                                        <h3 className="text-3xl font-black mb-2">Engineering</h3>
-                                        <p className="text-orange-100 max-w-sm">JEE Mains, Advanced, BITSAT, GATE & more. Comprehensive coverage for top institutes.</p>
+                                        <h3 className="text-2xl font-black mb-1 drop-shadow-md">Engineering</h3>
+                                        <p className="text-cm-maths/10 max-w-sm drop-shadow-sm text-sm font-medium">JEE Mains, Advanced, BITSAT, GATE & more. Comprehensive coverage.</p>
                                     </div>
-                                    <div className="mt-auto pt-8">
-                                        <button className="w-full bg-white text-orange-600 px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-orange-50 transition-colors shadow-lg shadow-orange-900/20 group-hover:scale-[1.02] transform duration-200">
+                                    <div className="mt-auto">
+                                        <Link to="/stream-mock-tests" className="w-full bg-cm-maths text-white px-5 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-cm-maths/90 transition-colors shadow-lg group-hover:shadow-cm-maths/50 transform duration-300 backdrop-blur-sm border border-cm-maths/50">
                                             View Tests <span className="material-symbols-outlined">arrow_outward</span>
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Medical Card */}
-                            <div className="md:col-span-1 md:row-span-2 group relative overflow-hidden rounded-3xl bg-gradient-to-bl from-teal-400 to-emerald-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                                <div className="absolute top-0 left-0 w-full h-full card-pattern-medical opacity-20"></div>
-                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/30">
-                                    POPULAR
-                                </div>
-                                <div className="relative z-10 p-8 flex flex-col h-full justify-between">
+                            <div className="md:col-span-1 md:row-span-2 group relative overflow-hidden rounded-3xl text-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600" alt="Medical" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-cm-teal/90 via-cm-teal/40 to-black/30"></div>
+
+                                <div className="relative z-10 p-6 flex flex-col h-full justify-between">
                                     <div>
-                                        <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 shadow-inner border border-white/10">
-                                            <span className="material-symbols-outlined text-3xl">medical_services</span>
+                                        <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-4 shadow-inner border border-white/20">
+                                            <span className="material-symbols-outlined text-2xl">medical_services</span>
                                         </div>
-                                        <h3 className="text-2xl font-black mb-2">Medical</h3>
-                                        <p className="text-teal-50 text-sm mb-4">NEET UG, PG, AIIMS, and State Medical exams.</p>
+                                        <h3 className="text-xl font-black mb-1 drop-shadow-md">Medical</h3>
+                                        <p className="text-teal-50/90 text-sm mb-2 drop-shadow-sm font-medium">NEET UG, PG, AIIMS exams.</p>
                                     </div>
-                                    <button className="w-full bg-white text-teal-600 px-4 py-3 rounded-xl font-bold text-sm hover:bg-teal-50 transition-colors shadow-lg">
-                                        Explore
-                                    </button>
+                                    <Link to="/stream-mock-tests" className="block text-center w-full bg-cm-teal text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-cm-teal/90 transition-colors shadow-lg group-hover:shadow-cm-teal/50 backdrop-blur-sm border border-cm-teal/40">
+                                        View Tests
+                                    </Link>
                                 </div>
                             </div>
 
                             {/* Small Cards */}
-                            <div className="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col justify-between">
+                            <div className="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-3xl text-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-6 flex flex-col justify-between">
+                                <img src="https://images.unsplash.com/photo-1454165833767-027ffea36c2e?auto=format&fit=crop&q=80&w=600" alt="Management" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-cm-physics/95 via-cm-physics/60 to-shadow-cm-dark/40"></div>
                                 <div className="relative z-10 flex flex-col h-full justify-between">
-                                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-inner border border-white/10">
-                                        <span className="material-symbols-outlined text-2xl">payments</span>
+                                    <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20">
+                                        <span className="material-symbols-outlined text-2xl">work</span>
                                     </div>
                                     <div className="mt-4">
-                                        <h3 className="text-xl font-black mb-1">Commerce</h3>
-                                        <p className="text-blue-100 text-xs">CA, CS, CMA, Banking exams.</p>
+                                        <h3 className="text-xl font-black mb-1 drop-shadow-md">Management</h3>
+                                        <p className="text-blue-50/90 text-xs drop-shadow-sm font-medium">CAT, MAT, XAT, GMAT & MBA exams.</p>
                                     </div>
                                 </div>
-                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px] z-20">
-                                    <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-bold text-sm">View Details</button>
+                                <div className="absolute inset-0 bg-blue-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20">
+                                    <Link to="/stream-mock-tests" className="bg-white text-cm-physics px-6 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">View Tests</Link>
                                 </div>
                             </div>
-                            <div className="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 to-purple-700 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col justify-between">
+
+                            <div className="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-3xl text-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 p-6 flex flex-col justify-between">
+                                <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=600" alt="Law & UPSC" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-cm-logical/95 via-cm-logical/60 to-shadow-cm-dark/40"></div>
                                 <div className="relative z-10 flex flex-col h-full justify-between">
-                                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-inner border border-white/10">
+                                    <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shadow-inner border border-white/20">
                                         <span className="material-symbols-outlined text-2xl">gavel</span>
                                     </div>
                                     <div className="mt-4">
-                                        <h3 className="text-xl font-black mb-1">Law & UPSC</h3>
-                                        <p className="text-purple-100 text-xs">CLAT, AILET, Civil Services.</p>
+                                        <h3 className="text-xl font-black mb-1 drop-shadow-md">Law & UPSC</h3>
+                                        <p className="text-purple-50/90 text-xs drop-shadow-sm font-medium">CLAT, AILET, Civil Services.</p>
                                     </div>
                                 </div>
-                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px] z-20">
-                                    <button className="bg-white text-purple-600 px-6 py-2 rounded-lg font-bold text-sm">View Details</button>
+                                <div className="absolute inset-0 bg-purple-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20">
+                                    <Link to="/stream-mock-tests" className="bg-white text-cm-logical px-6 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">View Tests</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Study Planner Section */}
-                <section className="py-20 px-6">
-                    <div className="max-w-7xl mx-auto bg-[#113cbb] rounded-[2rem] p-8 lg:p-16 text-white relative overflow-hidden">
-                        {/* Abstract BG */}
-                        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
-                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M44.7,-76.4C58.3,-69.2,70.1,-58,78.8,-44.6C87.5,-31.2,93.1,-15.6,91.2,-0.5C89.3,14.6,80,29.1,70.3,42.3C60.6,55.5,50.6,67.3,37.8,74.1C25,80.9,9.4,82.7,-6.1,80.8C-21.6,78.9,-36.9,73.4,-50,64.2C-63.1,55,-74,42.1,-80.4,27.5C-86.8,12.9,-88.7,-3.4,-84.9,-18.2C-81.1,-33,-71.5,-46.3,-59.4,-54.2C-47.3,-62.1,-32.7,-64.6,-19,-71.7C-5.3,-78.8,7.5,-90.4,23.3,-90.8C39.1,-91.2,57.9,-80.4,44.7,-76.4Z" fill="#FFFFFF" transform="translate(100 100)"></path>
-                            </svg>
-                        </div>
-                        <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-                            <div>
-                                <h2 className="text-4xl font-black mb-6">Smart Study Planner</h2>
-                                <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                                    Organize your preparation with an automated schedule. We track your progress and adjust your goals daily to ensure you finish the syllabus 30 days before the exam.
-                                </p>
-                                <Link to="/select-stream" className="inline-block bg-white text-[#113cbb] px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition-colors">
-                                    Personalize My Schedule
-                                </Link>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                                <div className="flex items-center justify-between mb-8">
-                                    <h4 className="font-bold text-xl">Weekly Goals</h4>
-                                    <span className="text-sm font-medium">May 20 - May 27</span>
+                {/* Slanted Top Divider */}
+                <div className="relative h-24 w-full overflow-hidden bg-[#f0fdf4] dark:bg-slate-900/50 -mb-1">
+                    <div className="absolute inset-0 z-0 opacity-40"
+                        style={{
+                            backgroundImage: 'radial-gradient(#10b981 1.5px, transparent 1.5px)',
+                            backgroundSize: '30px 30px'
+                        }}>
+                    </div>
+                    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 w-full h-[101%]">
+                        <path d="M0 0L720 100L1440 0V0H0V0Z" fill="white" className="dark:fill-slate-950" />
+                    </svg>
+                </div>
+
+                {/* New Animated Study Planner Section */}
+                <section className="pt-10 pb-12 bg-[#f0fdf4] dark:bg-slate-900/50 relative overflow-hidden z-10">
+                    {/* Background Dot Pattern */}
+                    <div className="absolute inset-0 z-0 opacity-10"
+                        style={{
+                            backgroundImage: 'radial-gradient(#10b981 1px, transparent 1px)',
+                            backgroundSize: '24px 24px'
+                        }}>
+                    </div>
+
+                    <div className="max-w-[1400px] mx-auto px-6 mb-8 text-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <h2 className="text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+                                Smart <span className="text-cm-primary">Study Planner</span>
+                            </h2>
+                        </motion.div>
+                    </div>
+
+                    <div className="overflow-hidden px-6 py-4">
+                        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center relative">
+                            {/* Left Card: Text Content */}
+                            <motion.div
+                                initial={{ x: -100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 1.2,
+                                    ease: "easeOut"
+                                }}
+                                className="bg-[#E8F2FF] rounded-[3rem] p-8 lg:p-10 relative shadow-2xl z-10 overflow-hidden h-full flex flex-col justify-center group border border-blue-100"
+                            >
+                                <img src="/assets/images/study_planner_bg.png" alt="Study Planner Background" className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-blue-500/5"></div>
+
+                                <div className="relative z-10 w-full max-w-lg">
+                                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight font-serif tracking-wide text-[#173CBA]">Smart Study Planner</h3>
+                                    <p className="text-slate-600 text-base mb-6 leading-relaxed font-medium">
+                                        Organize your preparation with an automated schedule. We track your progress and adjust your goals daily to ensure you finish the syllabus 30 days before the exam.
+                                    </p>
+                                    <Link to="/select-stream" className="inline-flex items-center justify-center bg-gradient-to-r from-[#173CBA] to-[#00C798] text-white px-8 py-3 rounded-xl font-bold text-sm hover:scale-[1.02] hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
+                                        Personalize My Schedule
+                                    </Link>
                                 </div>
-                                <div className="space-y-6">
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between text-sm mb-1">
-                                            <span>Mechanics Part II</span>
-                                            <span className="font-bold"><AnimatedCounter from={0} to={75} suffix="%" /></span>
-                                        </div>
-                                        <div className="h-2 w-full bg-white/20 rounded-full overflow-hidden">
-                                            <motion.div initial={{ width: 0 }} whileInView={{ width: "75%" }} transition={{ duration: 3.5, ease: "easeOut" }} viewport={{ once: true }} className="h-full bg-green-400 rounded-full"></motion.div>
-                                        </div>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <div className="flex justify-between text-sm mb-1">
-                                            <span>Organic Chemistry</span>
-                                            <span className="font-bold"><AnimatedCounter from={0} to={40} suffix="%" /></span>
-                                        </div>
-                                        <div className="h-2 w-full bg-white/20 rounded-full overflow-hidden">
-                                            <motion.div initial={{ width: 0 }} whileInView={{ width: "40%" }} transition={{ duration: 3.5, ease: "easeOut", delay: 0.2 }} viewport={{ once: true }} className="h-full bg-orange-400 rounded-full"></motion.div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4 pt-4">
-                                        <div className="bg-white/20 p-4 rounded-xl flex-1 text-center">
-                                            <div className="text-2xl font-black"><AnimatedCounter from={0} to={12} duration={3.5} /></div>
-                                            <div className="text-[10px] uppercase font-bold opacity-70">Tests Taken</div>
-                                        </div>
-                                        <div className="bg-white/20 p-4 rounded-xl flex-1 text-center border-2 border-white/50">
-                                            <div className="text-2xl font-black"><AnimatedCounter from={0} to={3} duration={3.5} /></div>
-                                            <div className="text-[10px] uppercase font-bold opacity-70">Pending Tests</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </motion.div>
+
+                            {/* Right Card: 3D Calendar Animation */}
+                            <motion.div
+                                initial={{ x: 100, opacity: 0 }}
+                                whileInView={{ x: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+                                className="relative z-20 flex justify-center items-center py-10 lg:py-0 w-full"
+                            >
+                                {/* Behind glowing effect */}
+                                <div className="absolute inset-x-4 inset-y-10 bg-gradient-to-tr from-cyan-400 via-blue-500 to-teal-400 blur-[60px] rounded-[3rem] -z-10 opacity-40 animate-pulse" style={{ animationDuration: '4s' }}></div>
+
+                                {/* Desk Calendar Component */}
+                                <DeskCalendar3D />
+                            </motion.div>
                         </div>
                     </div>
                 </section>
-            </main>
+
+                {/* Slanted Bottom Divider */}
+                <div className="relative h-24 w-full bg-[#f0fdf4] dark:bg-slate-900/50 -mt-10 z-30">
+                    <div className="absolute inset-0 z-0 opacity-40"
+                        style={{
+                            backgroundImage: 'radial-gradient(#10b981 1.5px, transparent 1.5px)',
+                            backgroundSize: '30px 30px'
+                        }}>
+                    </div>
+                    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 w-full h-[101%] rotate-180">
+                        <path d="M0 100L720 0L1440 100V100H0V100Z" fill="white" className="dark:fill-slate-950" />
+                    </svg>
+                </div>
+
+                {/* Top Mentors Section */}
+                <TopMentors />
+
+                {/* FAQ Section */}
+                <FlashcardFAQ />
+
+            </main >
         </div >
     );
 };

@@ -1,0 +1,335 @@
+:root {
+  --primary-blue: #173CBA;
+  --primary-green: #00C798;
+  --secondary-bg: #F0F7FF;
+  --text-dark: #333333;
+  --text-muted: #666666;
+  --accent-orange: #FFB800;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-dark);
+  background-color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+.step-design-section {
+  padding: 1rem 0;
+  /* Reduced padding from 3rem */
+  background-color: #fdfdf5;
+  /* Off-white/yellowish background like the reference */
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.step-design-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  /* Reduced margin from 2rem */
+}
+
+.step-design-header h1 {
+  font-size: 2rem;
+  /* Reduced font size from 2.5rem */
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  /* Reduced margin */
+}
+
+.step-design-header .highlight-blue {
+  color: #173CBA;
+}
+
+.step-design-header p {
+  font-size: 1rem;
+  /* Reduced font size */
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.steps-container {
+  position: relative;
+  max-width: 100%;
+  width: 62.5em;
+  /* 1000px */
+  margin: 0 auto;
+  height: 35em;
+  /* Reduced height from 50em to fit all cards better */
+  /* This viewport-aware scaling clamps off on desktops but shrinks fluidly indefinitely for phones */
+  font-size: min(1.2vw, 14px);
+  /* Slightly reduced font scale */
+}
+
+.connector-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.step-card {
+  position: absolute;
+  width: 20em;
+  /* 320px */
+  background: transparent;
+  padding: 1em;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 14em;
+  /* Enforce uniform card container height */
+}
+
+.step-card:hover {
+  transform: translateY(-0.35em);
+}
+
+.step-indicator {
+  position: absolute;
+  top: 1em;
+  /* overlaps the start of the white content card */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.step-circle-badge {
+  background: var(--primary-blue);
+  color: #ffffff;
+  width: 3.75em;
+  /* 60px */
+  height: 3.75em;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border: 0.25em solid #ffffff;
+  /* 4px */
+  box-shadow: 0 0.25em 1em rgba(23, 60, 186, 0.2);
+}
+
+.step-circle-badge span {
+  font-size: 1.5em;
+  /* 24px */
+}
+
+.step-content {
+  text-align: center;
+  background: #ffffff;
+  border-radius: 1.5em;
+  /* 24px */
+  padding: 3em 1.5em 1.5em 1.5em;
+  /* Increased top padding to consistently avoid the badge */
+  /* adequate top padding for the centered absolute badge */
+  box-shadow: 0 0.6em 1.8em rgba(0, 0, 0, 0.05);
+  /* 10px 30px */
+  position: relative;
+  z-index: 2;
+  transition: box-shadow 0.3s ease;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Ensure uniform internal layout */
+}
+
+.step-card:hover .step-content {
+  box-shadow: 0 1em 2.5em rgba(0, 0, 0, 0.1);
+  /* 15px 40px */
+}
+
+.step-content h3 {
+  font-size: 1.25em;
+  /* 20px */
+  font-weight: 800;
+  margin-bottom: 0.6em;
+  color: #111827;
+  min-height: 2.8em;
+  /* Reserve exactly two lines */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-content p {
+  font-size: 0.95em;
+  /* 15px */
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Specific alignments for the staggered effect */
+.step-card.left {
+  left: 10%;
+}
+
+.step-card.right {
+  right: 10%;
+}
+
+/* Animations for Step Design */
+
+/* Initial hidden states */
+.step-design-header.animate-header,
+.step-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  opacity: 0;
+}
+
+/* Animation Keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawLine {
+  0% {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes makeDashed {
+  to {
+    stroke-dasharray: 10, 10;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes moveDashes {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -20;
+    /* Moves by the length of dash + gap (10+10) */
+  }
+}
+
+/* Trigger animations when .is-visible is added */
+.is-visible .step-design-header.animate-header {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Sequence logic updated for continuous line drawing:
+   The line starts drawing at 0.5s and takes 1s per segment, continuing without pause.
+   Path 1 draws (delay: 0.5s, duration: 1s)
+   Path 2 draws (delay: 1.5s, duration: 1s)
+   Path 3 draws (delay: 2.5s, duration: 1s)
+   
+   Cards fade up slightly after the line reaches them or passes them.
+   Card 1 appears immediately (delay: 0.2s)
+   Card 2 appears after Line 1 reaches it (delay: 1.2s)
+   Card 3 appears after Line 2 reaches it (delay: 2.2s)
+   Card 4 appears after Line 3 reaches it (delay: 3.2s)
+*/
+
+.is-visible .card-anim-1 {
+  animation: fadeUp 0.6s ease forwards 0.2s;
+}
+
+.is-visible .path-1 {
+  animation: drawLine 1s linear forwards 0.5s, makeDashed 0.2s linear forwards 1.5s, moveDashes 1s linear infinite 1.7s;
+}
+
+.is-visible .card-anim-2 {
+  animation: fadeUp 0.6s ease forwards 1.2s;
+}
+
+.is-visible .path-2 {
+  animation: drawLine 1s linear forwards 1.5s, makeDashed 0.2s linear forwards 2.5s, moveDashes 1s linear infinite 2.7s;
+}
+
+.is-visible .card-anim-3 {
+  animation: fadeUp 0.6s ease forwards 2.2s;
+}
+
+.is-visible .path-3 {
+  animation: drawLine 1s linear forwards 2.5s, makeDashed 0.2s linear forwards 3.5s, moveDashes 1s linear infinite 3.7s;
+}
+
+.is-visible .card-anim-4 {
+  animation: fadeUp 0.6s ease forwards 3.2s;
+}
+
+/* Media queries for hiding column layout fallback so SVG scales via em instead */
+@media (max-width: 1024px) {
+  /* No forced layout overrides - rely solely on perfect min() viewport down-scaling to keep the zigzag structural flow identical */
+}

@@ -1,7 +1,7 @@
 :root {
   --primary-blue: #173CBA;
   --primary-green: #00C798;
-  --secondary-bg: #F0F7FF;
+  --secondary-bg: #d2efee;
   --text-dark: #333333;
   --text-muted: #666666;
   --accent-orange: #FFB800;
@@ -32,9 +32,7 @@ body {
 }
 
 .hero {
-  background-color: #F8FAFF;
-  background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
-  background-size: 30px 30px;
+  background-color: #d2efee;
   position: relative;
   overflow: hidden;
 }
@@ -142,12 +140,9 @@ button {
 
 /* Hero Styles */
 .hero {
-  background-color: #F9FAFB;
-  background-image: radial-gradient(#e5e7eb 1.5px, transparent 1.5px);
-  background-size: 40px 40px;
+  background-color: #d2efee;
   position: relative;
   overflow: hidden;
-  padding: 80px 0;
 }
 
 .hero-content {
@@ -191,6 +186,21 @@ button {
   text-transform: uppercase;
 }
 
+@media (max-width: 768px) {
+  .hero-badge {
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .badge-icon {
+    font-size: 10px;
+  }
+
+  .badge-text {
+    font-size: 9px;
+  }
+}
+
 .hero-title {
   font-size: 54px;
   line-height: 1.1;
@@ -199,7 +209,29 @@ button {
   letter-spacing: -0.02em;
   margin-bottom: 24px;
   max-width: 672px;
-  /* Tailwind max-w-2xl match */
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 45px;
+    line-height: 0.95;
+    margin-bottom: 4px;
+    width: 100%;
+    max-width: 100%;
+    letter-spacing: -0.05em;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .hero-left {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .gradient-text {
@@ -220,10 +252,28 @@ button {
   font-weight: 400;
 }
 
+@media (max-width: 768px) {
+  .hero-subtitle {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+}
+
 .hero-actions {
   display: flex;
   gap: 20px;
   margin-bottom: 64px;
+}
+
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+
 }
 
 .btn-primary {
@@ -270,9 +320,55 @@ button {
   border-color: #D1D5DB;
 }
 
+@media (max-width: 768px) {
+
+  .btn-primary,
+  .btn-secondary {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    padding: 12px 4px;
+    font-size: 13px;
+    height: 48px;
+    justify-content: center;
+  }
+}
+
 .hero-stats {
   display: flex;
   gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    gap: 12px;
+  }
+
+  .stat-item {
+    background: white;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .stat-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dark .stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .stat-item {
@@ -719,19 +815,24 @@ button {
   }
 
   .hero-left {
-    align-items: center;
-    text-align: center;
-    padding-left: 16px;
-    padding-right: 16px;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: flex-start;
+    height: auto;
+    gap: 0.25rem;
   }
 
   .hero-subtitle {
-    margin: 0 auto 20px;
+    margin: 0 0 20px 0;
   }
 
   .hero-actions {
-    justify-content: center;
-    margin-bottom: 2rem;
+    justify-content: flex-start;
+    margin-bottom: 0;
   }
 
   .hero-stats {
@@ -743,77 +844,5 @@ button {
     height: 240px;
     right: 5%;
     bottom: -10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding-top: 40px;
-  }
-
-  .hero-title {
-    font-size: 26px;
-    margin-bottom: 6px;
-  }
-
-  .hero-subtitle {
-    font-size: 13px;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-
-  .dashboard-wrapper {
-    height: 220px;
-    max-width: 260px;
-  }
-
-  .hero-stats {
-    flex-wrap: nowrap;
-    gap: 8px;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  .stat-item {
-    gap: 4px;
-    flex: 1;
-  }
-
-  .stat-icon-wrapper {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    border-radius: 6px;
-  }
-
-  .stat-icon-wrapper svg {
-    width: 14px;
-    height: 14px;
-  }
-
-  .stat-value {
-    font-size: 12px;
-  }
-
-  .stat-label {
-    font-size: 9px;
-    white-space: nowrap;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto 1.5rem;
-    gap: 12px;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 20px;
-    font-size: 16px;
   }
 }

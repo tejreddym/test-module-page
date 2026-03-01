@@ -67,32 +67,65 @@ const ExamListLayout = ({ streamId }) => {
                     {stream.exams.map((exam) => (
                         <motion.div key={exam.id} variants={itemVariants} className="h-full">
                             <Link to={`/studyplanner/${exam.id}/setup`} className="relative group block h-full">
-                                <div className={`bg-gradient-to-br ${exam.gradient} p-6 rounded-[2rem] border border-white/20 transition-transform duration-300 h-full flex flex-col text-left overflow-hidden shadow-xl hover:scale-[1.03] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)]`}>
+                                <div className={`relative p-6 rounded-[2rem] border border-white/20 transition-transform duration-300 h-full flex flex-col text-left overflow-hidden shadow-xl hover:scale-[1.03] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)]`}>
+                                    {/* Background Image/Gradient */}
+                                    {exam.bgImage ? (
+                                        <>
+                                            <img src={exam.bgImage} alt="" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                            <div className={`absolute inset-0 bg-gradient-to-br ${exam.gradient}`}></div>
+                                        </>
+                                    ) : (
+                                        <div className={`absolute inset-0 bg-gradient-to-br ${exam.gradient}`}></div>
+                                    )}
                                     <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 2px, white 2px, white 4px)' }}></div>
 
-                                    <div className={`w-14 h-14 rounded-[1.2rem] flex items-center justify-center mb-6 relative z-10 shadow-inner ${exam.iconBg} backdrop-blur-md`}>
-                                        <span className="material-symbols-outlined text-2xl text-white" style={{ fontVariationSettings: "'FILL' 1, 'wght' 400" }}>
+                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 relative z-10 shadow-lg ${exam.iconBg} backdrop-blur-md overflow-hidden border border-white/30`}>
+                                        {exam.logo && (
+                                            <img
+                                                src={exam.logo}
+                                                alt={`${exam.title} Logo`}
+                                                className="w-full h-full object-contain p-2 absolute inset-0 z-20 bg-inherit"
+                                                onError={(e) => {
+                                                    e.target.style.opacity = '0';
+                                                }}
+                                            />
+                                        )}
+                                        <span
+                                            className="material-symbols-outlined text-2xl text-white relative z-10"
+                                            style={{
+                                                fontVariationSettings: "'FILL' 1, 'wght' 400"
+                                            }}
+                                        >
                                             {exam.icon}
                                         </span>
                                     </div>
-                                    <h3 className="text-2xl font-black text-white mb-2 relative z-10 tracking-tight">{exam.title}</h3>
-                                    <p className="text-sm text-white/90 leading-relaxed mb-6 flex-grow relative z-10 font-medium">
+                                    <h3 className="text-2xl font-black text-white mb-2 relative z-10 tracking-tight drop-shadow-md">{exam.title}</h3>
+                                    <p className="text-sm text-white/90 leading-relaxed mb-6 flex-grow relative z-10 font-medium drop-shadow-sm">
                                         {exam.desc}
                                     </p>
 
-                                    <div className="mt-auto relative z-10 w-full pt-4 border-t border-white/20">
-                                        <div className="flex gap-2">
+                                    <div className="mt-auto relative z-10 w-full pt-4 border-t border-white/10">
+                                        <div className="flex flex-wrap gap-2">
                                             {exam.tags.map(tag => (
-                                                <span key={tag} className="text-[10px] font-bold bg-white/20 text-white px-2 py-1 rounded backdrop-blur-sm shadow-sm">{tag}</span>
+                                                <span key={tag} className="text-[10px] font-bold bg-white/10 text-white px-2.5 py-1 rounded-lg backdrop-blur-md border border-white/10 shadow-sm uppercase tracking-wider">{tag}</span>
                                             ))}
                                         </div>
                                     </div>
 
                                     {/* Hover overlay */}
                                     <div className="absolute inset-0 bg-white/95 backdrop-blur-md rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center border-2 border-[#113cbb] z-20">
-                                        <div className="flex items-center gap-2 text-[#113cbb] font-bold text-xl">
-                                            Select {exam.title}
-                                            <span className="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">add_circle</span>
+                                        <div className="flex flex-col items-center gap-4">
+                                            <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-slate-50 shadow-md">
+                                                {exam.logo ? (
+                                                    <img src={exam.logo} alt="" className="w-10 h-10 object-contain" />
+                                                ) : (
+                                                    <span className="material-symbols-outlined text-3xl text-[#113cbb]">{exam.icon}</span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-center gap-2 text-[#113cbb] font-black text-xl uppercase tracking-tight">
+                                                Select {exam.title}
+                                                <span className="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

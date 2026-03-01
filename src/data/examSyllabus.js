@@ -6,13 +6,13 @@ export const examData = {
                 id: 'physics',
                 name: 'Physics',
                 icon: 'science',
-                iconColor: 'text-blue-500',
-                iconBg: 'bg-blue-100',
+                iconColor: 'text-cm-physics',
+                iconBg: 'bg-cm-physics/10',
                 totalChapters: 21,
                 categories: [
                     {
                         name: 'MECHANICS',
-                        colorClass: 'bg-blue-500',
+                        colorClass: 'bg-cm-physics',
                         chapters: [
                             { id: 'jm-p1', name: 'Physics and Measurement', weightage: 'normal' },
                             { id: 'jm-p2', name: 'Kinematics', weightage: 'normal' },
@@ -25,7 +25,7 @@ export const examData = {
                     },
                     {
                         name: 'THERMODYNAMICS & KINETIC THEORY',
-                        colorClass: 'bg-red-500',
+                        colorClass: 'bg-cm-urgency',
                         chapters: [
                             { id: 'jm-p8', name: 'Thermodynamics', weightage: 'high' },
                             { id: 'jm-p9', name: 'Kinetic Theory of Gases', weightage: 'normal' }
@@ -33,7 +33,7 @@ export const examData = {
                     },
                     {
                         name: 'ELECTROMAGNETISM',
-                        colorClass: 'bg-yellow-500',
+                        colorClass: 'bg-cm-warning',
                         chapters: [
                             { id: 'jm-p10', name: 'Electrostatics', weightage: 'high' },
                             { id: 'jm-p11', name: 'Current Electricity', weightage: 'high' },
@@ -44,7 +44,7 @@ export const examData = {
                     },
                     {
                         name: 'OPTICS & MODERN PHYSICS',
-                        colorClass: 'bg-purple-500',
+                        colorClass: 'bg-cm-logical',
                         chapters: [
                             { id: 'jm-p15', name: 'Optics (Ray and Wave)', weightage: 'high' },
                             { id: 'jm-p16', name: 'Dual Nature of Matter and Radiation', weightage: 'normal' },
@@ -59,13 +59,13 @@ export const examData = {
                 id: 'chemistry',
                 name: 'Chemistry',
                 icon: 'biotech',
-                iconColor: 'text-teal-600',
-                iconBg: 'bg-teal-50',
+                iconColor: 'text-cm-chemistry',
+                iconBg: 'bg-cm-chemistry/10',
                 totalChapters: 28,
                 categories: [
                     {
                         name: 'PHYSICAL CHEMISTRY',
-                        colorClass: 'bg-teal-500',
+                        colorClass: 'bg-cm-chemistry',
                         chapters: [
                             { id: 'jm-c1', name: 'Some Basic Concepts in Chemistry', weightage: 'normal' },
                             { id: 'jm-c2', name: 'Atomic Structure', weightage: 'normal' },
@@ -79,7 +79,7 @@ export const examData = {
                     },
                     {
                         name: 'INORGANIC CHEMISTRY',
-                        colorClass: 'bg-indigo-500',
+                        colorClass: 'bg-cm-logical',
                         chapters: [
                             { id: 'jm-c9', name: 'Classification of Elements and Periodicity in Properties', weightage: 'normal' },
                             { id: 'jm-c10', name: 'p-Block Elements', weightage: 'high' },
@@ -90,7 +90,7 @@ export const examData = {
                     },
                     {
                         name: 'ORGANIC CHEMISTRY',
-                        colorClass: 'bg-orange-500',
+                        colorClass: 'bg-cm-maths',
                         chapters: [
                             { id: 'jm-c14', name: 'Purification and Characterisation of Organic Compounds', weightage: 'normal' },
                             { id: 'jm-c15', name: 'Some Basic Principles of Organic Chemistry', weightage: 'high' },
@@ -108,13 +108,13 @@ export const examData = {
                 id: 'mathematics',
                 name: 'Mathematics',
                 icon: 'calculate',
-                iconColor: 'text-orange-500',
-                iconBg: 'bg-orange-50',
+                iconColor: 'text-cm-maths',
+                iconBg: 'bg-cm-maths/10',
                 totalChapters: 16,
                 categories: [
                     {
                         name: 'ALGEBRA',
-                        colorClass: 'bg-orange-500',
+                        colorClass: 'bg-cm-maths',
                         chapters: [
                             { id: 'jm-m1', name: 'Sets, Relations and Functions', weightage: 'normal' },
                             { id: 'jm-m2', name: 'Complex Numbers and Quadratic Equations', weightage: 'normal' },
@@ -126,7 +126,7 @@ export const examData = {
                     },
                     {
                         name: 'CALCULUS',
-                        colorClass: 'bg-green-500',
+                        colorClass: 'bg-cm-success',
                         chapters: [
                             { id: 'jm-m7', name: 'Limit, Continuity and Differentiability', weightage: 'high' },
                             { id: 'jm-m8', name: 'Integral Calculus', weightage: 'high' },
@@ -135,14 +135,14 @@ export const examData = {
                     },
                     {
                         name: 'COORDINATE GEOMETRY',
-                        colorClass: 'bg-pink-500',
+                        colorClass: 'bg-cm-logical',
                         chapters: [
                             { id: 'jm-m10', name: 'Coordinate Geometry (Straight Lines & Conic Sections)', weightage: 'high' }
                         ]
                     },
                     {
                         name: 'VECTORS & 3D GEOMETRY',
-                        colorClass: 'bg-blue-600',
+                        colorClass: 'bg-cm-accent',
                         chapters: [
                             { id: 'jm-m11', name: 'Vector Algebra', weightage: 'normal' },
                             { id: 'jm-m12', name: 'Three Dimensional Geometry', weightage: 'high' }
@@ -150,14 +150,14 @@ export const examData = {
                     },
                     {
                         name: 'STATISTICS & PROBABILITY',
-                        colorClass: 'bg-yellow-600',
+                        colorClass: 'bg-cm-warning',
                         chapters: [
                             { id: 'jm-m13', name: 'Statistics and Probability', weightage: 'high' }
                         ]
                     },
                     {
                         name: 'TRIGONOMETRY',
-                        colorClass: 'bg-rose-500',
+                        colorClass: 'bg-cm-urgency',
                         chapters: [
                             { id: 'jm-m14', name: 'Trigonometry', weightage: 'normal' }
                         ]
@@ -173,13 +173,13 @@ export const examData = {
                 id: 'physics',
                 name: 'Physics',
                 icon: 'science',
-                iconColor: 'text-blue-500',
-                iconBg: 'bg-blue-100',
+                iconColor: 'text-cm-physics',
+                iconBg: 'bg-cm-physics/10',
                 totalChapters: 20,
                 categories: [
                     {
                         name: 'MECHANICS',
-                        colorClass: 'bg-blue-500',
+                        colorClass: 'bg-cm-physics',
                         chapters: [
                             { id: 'nu-p1', name: 'Physics and Measurement', weightage: 'normal' },
                             { id: 'nu-p2', name: 'Kinematics', weightage: 'normal' },
@@ -192,7 +192,7 @@ export const examData = {
                     },
                     {
                         name: 'THERMODYNAMICS',
-                        colorClass: 'bg-red-500',
+                        colorClass: 'bg-cm-urgency',
                         chapters: [
                             { id: 'nu-p8', name: 'Thermodynamics', weightage: 'high' },
                             { id: 'nu-p9', name: 'Behavior of Perfect Gas and Kinetic Theory', weightage: 'normal' }
@@ -200,7 +200,7 @@ export const examData = {
                     },
                     {
                         name: 'ELECTROMAGNETISM',
-                        colorClass: 'bg-yellow-500',
+                        colorClass: 'bg-cm-warning',
                         chapters: [
                             { id: 'nu-p10', name: 'Electrostatics', weightage: 'high' },
                             { id: 'nu-p11', name: 'Current Electricity', weightage: 'high' },
@@ -211,7 +211,7 @@ export const examData = {
                     },
                     {
                         name: 'OPTICS & MODERN PHYSICS',
-                        colorClass: 'bg-purple-500',
+                        colorClass: 'bg-cm-logical',
                         chapters: [
                             { id: 'nu-p15', name: 'Optics', weightage: 'high' },
                             { id: 'nu-p16', name: 'Dual Nature of Matter and Radiation', weightage: 'normal' },
@@ -225,13 +225,13 @@ export const examData = {
                 id: 'chemistry',
                 name: 'Chemistry',
                 icon: 'biotech',
-                iconColor: 'text-teal-600',
-                iconBg: 'bg-teal-50',
+                iconColor: 'text-cm-chemistry',
+                iconBg: 'bg-cm-chemistry/10',
                 totalChapters: 20,
                 categories: [
                     {
                         name: 'PHYSICAL CHEMISTRY',
-                        colorClass: 'bg-teal-500',
+                        colorClass: 'bg-cm-chemistry',
                         chapters: [
                             { id: 'nu-c1', name: 'Some Basic Concepts of Chemistry', weightage: 'normal' },
                             { id: 'nu-c2', name: 'Structure of Atom', weightage: 'normal' },
@@ -244,7 +244,7 @@ export const examData = {
                     },
                     {
                         name: 'INORGANIC CHEMISTRY',
-                        colorClass: 'bg-indigo-500',
+                        colorClass: 'bg-cm-logical',
                         chapters: [
                             { id: 'nu-c8', name: 'Classification of Elements and Periodicity', weightage: 'normal' },
                             { id: 'nu-c9', name: 'Chemical Bonding and Molecular Structure', weightage: 'high' },
@@ -255,7 +255,7 @@ export const examData = {
                     },
                     {
                         name: 'ORGANIC CHEMISTRY',
-                        colorClass: 'bg-orange-500',
+                        colorClass: 'bg-cm-maths',
                         chapters: [
                             { id: 'nu-c13', name: 'Organic Chemistry - Some Basic Principles and Techniques', weightage: 'high' },
                             { id: 'nu-c14', name: 'Hydrocarbons', weightage: 'normal' },
@@ -272,13 +272,13 @@ export const examData = {
                 id: 'biology',
                 name: 'Biology',
                 icon: 'forest',
-                iconColor: 'text-green-600',
-                iconBg: 'bg-green-50',
+                iconColor: 'text-cm-chemistry',
+                iconBg: 'bg-cm-chemistry/10',
                 totalChapters: 10,
                 categories: [
                     {
                         name: 'DIVERSITY & STRUCTURE',
-                        colorClass: 'bg-green-600',
+                        colorClass: 'bg-cm-chemistry',
                         chapters: [
                             { id: 'nu-b1', name: 'Diversity in Living World', weightage: 'high' },
                             { id: 'nu-b2', name: 'Structural Organisation in Animals and Plants', weightage: 'high' },
@@ -287,7 +287,7 @@ export const examData = {
                     },
                     {
                         name: 'PHYSIOLOGY',
-                        colorClass: 'bg-red-500',
+                        colorClass: 'bg-cm-urgency',
                         chapters: [
                             { id: 'nu-b4', name: 'Plant Physiology', weightage: 'high' },
                             { id: 'nu-b5', name: 'Human Physiology', weightage: 'high' }
@@ -295,7 +295,7 @@ export const examData = {
                     },
                     {
                         name: 'REPRODUCTION & GENETICS',
-                        colorClass: 'bg-blue-500',
+                        colorClass: 'bg-cm-accent',
                         chapters: [
                             { id: 'nu-b6', name: 'Reproduction', weightage: 'high' },
                             { id: 'nu-b7', name: 'Genetics and Evolution', weightage: 'high' }
@@ -303,7 +303,7 @@ export const examData = {
                     },
                     {
                         name: 'BIOLOGY IN HUMAN WELFARE & ECOLOGY',
-                        colorClass: 'bg-yellow-600',
+                        colorClass: 'bg-cm-warning',
                         chapters: [
                             { id: 'nu-b8', name: 'Biology and Human Welfare', weightage: 'normal' },
                             { id: 'nu-b9', name: 'Biotechnology and Its Applications', weightage: 'high' },
