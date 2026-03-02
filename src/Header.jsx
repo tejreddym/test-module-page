@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
-import { Search, ChevronDown, LogIn } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, ChevronDown, LogIn, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from './assets/logo.png';
+import './Header.css';
 
 const Header = () => {
     const [showMore, setShowMore] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
+
+    // Close mobile menu when location changes
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+        setShowMore(false);
+    }, [location]);
 
     const navItems = [
         { name: 'Home', path: '/', active: location.pathname === '/' },
@@ -32,59 +40,82 @@ const Header = () => {
         },
     ];
 
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
     return (
-        <header style={styles.header}>
-            <div className="container" style={styles.headerContainer}>
-                {/* Logo Section */}
-                <Link to="/" style={styles.logoContainer}>
-                    <img src={logo} alt="College Mentor" style={styles.logo} />
-                </Link>
+        <header className="header">
+            <div className="container headerContainer">
+                <div className="headerLeftGroup">
+                    {/* Mobile Menu Toggle Button */}
+                    <button className="hamburgerMenu" onClick={toggleMobileMenu}>
+                        {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+
+                    {/* Logo Section */}
+                    <Link to="/" className="logoContainer" onClick={() => setIsMobileMenuOpen(false)}>
+                        <img src={logo} alt="College Mentor" className="logo" />
+                    </Link>
+                </div>
 
                 {/* Navigation Section */}
-                <nav style={styles.nav}>
-                    <ul style={styles.navList}>
+                <nav className={`nav ${isMobileMenuOpen ? 'mobileOpen' : ''}`}>
+                    <ul className="navList">
                         {navItems.map((item) => (
                             <li
                                 key={item.name}
-                                style={styles.navItem}
-                                onMouseEnter={() => item.name === 'More' && setShowMore(true)}
-                                onMouseLeave={() => item.name === 'More' && setShowMore(false)}
+                                className="navItem"
+                                onMouseEnter={() => window.innerWidth > 968 && item.name === 'More' && setShowMore(true)}
+                                onMouseLeave={() => window.innerWidth > 968 && item.name === 'More' && setShowMore(false)}
                             >
                                 {item.path ? (
                                     <Link
                                         to={item.path}
+                                        className="navLink"
                                         style={{
-                                            ...styles.navLink,
-                                            color: item.active ? 'var(--primary-blue)' : item.highlight ? 'var(--accent-orange)' : 'var(--text-dark)',
+                                            color: item.active ? 'var(--primary-blue, #1d4ed8)' : item.highlight ? 'var(--accent-orange, #f97316)' : 'var(--text-dark, #333)',
                                             fontWeight: item.active || item.highlight ? '600' : '500',
                                         }}
+                                        onClick={() => setIsMobileMenuOpen(false)}
                                     >
-                                        {item.name}
-                                        {item.hasDropdown && <ChevronDown size={16} style={styles.chevron} />}
+                                        <span>{item.name}</span>
+                                        {item.hasDropdown && <ChevronDown size={16} className="chevron" />}
                                     </Link>
                                 ) : (
-                                    <div
+                                    <button
+                                        className="navLink"
                                         style={{
-                                            ...styles.navLink,
-                                            color: item.highlight ? 'var(--accent-orange)' : 'var(--text-dark)',
+                                            color: item.highlight ? 'var(--accent-orange, #f97316)' : 'var(--text-dark, #333)',
                                             fontWeight: item.highlight ? '600' : '500',
-                                            cursor: 'pointer'
+                                        }}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            if (item.name === 'More') {
+                                                setShowMore(!showMore);
+                                            }
                                         }}
                                     >
-                                        {item.name}
-                                        {item.hasDropdown && <ChevronDown size={16} style={styles.chevron} />}
-                                    </div>
+                                        <span>{item.name}</span>
+                                        {item.hasDropdown && <ChevronDown size={16} className="chevron" />}
+                                    </button>
                                 )}
 
                                 {/* Dropdown Menu for "More" */}
-                                {item.name === 'More' && showMore && (
-                                    <div style={styles.dropdown}>
+                                {item.name === 'More' && (
+                                    <div
+                                        className={`dropdown ${showMore ? 'mobileOpen' : ''}`}
+                                        style={{ display: showMore ? 'flex' : 'none' }}
+                                    >
                                         {item.dropdownItems.map((subItem) => (
                                             <Link
                                                 key={subItem.name}
                                                 to={subItem.path}
-                                                style={styles.dropdownItem}
-                                                onClick={() => setShowMore(false)}
+                                                className="dropdownItem"
+                                                onClick={() => {
+                                                    setShowMore(false);
+                                                    setIsMobileMenuOpen(false);
+                                                }}
                                             >
                                                 {subItem.name}
                                             </Link>
@@ -97,115 +128,17 @@ const Header = () => {
                 </nav>
 
                 {/* Actions Section */}
-                <div style={styles.actions}>
-                    <button style={styles.searchButton}>
-                        <Search size={22} color="var(--primary-blue)" />
+                <div className="actions">
+                    <button className="searchButton">
+                        <Search size={24} color="#1d2d3d" />
                     </button>
-                    <button style={styles.loginButton}>
-                        <LogIn size={20} style={styles.loginIcon} />
+                    <button className="loginButton">
                         Login
                     </button>
                 </div>
             </div>
         </header>
     );
-};
-
-const styles = {
-    header: {
-        backgroundColor: 'var(--secondary-bg)',
-        padding: '0.6rem 0',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)',
-    },
-    headerContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    logoContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        textDecoration: 'none'
-    },
-    logo: {
-        height: '36px',
-        objectFit: 'contain',
-    },
-    nav: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    navList: {
-        display: 'flex',
-        gap: '1.2rem',
-        alignItems: 'center',
-    },
-    navItem: {
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative'
-    },
-    navLink: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.25rem',
-        fontSize: '0.9rem',
-        textDecoration: 'none'
-    },
-    chevron: {
-        marginTop: '2px',
-    },
-    dropdown: {
-        position: 'absolute',
-        top: '100%',
-        left: '0',
-        backgroundColor: '#ffffff',
-        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-        borderRadius: '8px',
-        padding: '0.5rem 0',
-        minWidth: '180px',
-        zIndex: 1001,
-        border: '1px solid rgba(0,0,0,0.05)',
-        marginTop: '0.5rem'
-    },
-    dropdownItem: {
-        display: 'block',
-        padding: '0.75rem 1.25rem',
-        fontSize: '0.9rem',
-        color: 'var(--text-dark)',
-        textDecoration: 'none',
-        transition: 'all 0.2s ease',
-        fontWeight: '500'
-    },
-    actions: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem',
-    },
-    searchButton: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0.4rem',
-    },
-    loginButton: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem',
-        padding: '0.5rem 1.2rem',
-        borderRadius: '6px',
-        border: '1.5px solid var(--primary-green)',
-        color: 'var(--primary-green)',
-        fontWeight: '600',
-        fontSize: '0.85rem',
-        transition: 'all 0.2s ease',
-    },
-    loginIcon: {
-        marginRight: '2px',
-    }
 };
 
 export default Header;

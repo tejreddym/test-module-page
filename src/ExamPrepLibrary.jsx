@@ -60,7 +60,7 @@ const ExamPrepLibrary = () => {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative hero-gradient overflow-visible pt-10 pb-16 lg:pt-16 lg:pb-24 px-2 lg:px-6 h-[calc(100vh-80px)] max-h-[100vh] flex items-center hero-with-dots-bottom">
+                <section className="relative hero-gradient overflow-hidden lg:overflow-visible pt-10 pb-16 lg:pt-16 lg:pb-24 px-4 lg:px-6 min-h-screen lg:min-h-[calc(100vh-80px)] lg:h-[calc(100vh-80px)] lg:max-h-[100vh] flex items-center hero-with-dots-bottom border-b border-transparent">
 
                     <style dangerouslySetInnerHTML={{
                         __html: `
@@ -87,8 +87,8 @@ const ExamPrepLibrary = () => {
                         }
                     `}} />
 
-                    <div className="relative w-full h-full z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-stretch lg:items-center py-6 lg:py-0">
-                        <div className="z-10 text-left w-full h-full flex flex-col justify-between lg:justify-center">
+                    <div className="relative w-full h-full z-10 max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-6 mt-16 lg:mt-0 lg:py-0">
+                        <div className="z-10 text-left w-full h-full flex flex-col justify-center gap-2 lg:gap-0 lg:justify-center">
                             <div className="hero-badge">
                                 <span className="badge-icon">🎯</span>
                                 <span className="badge-text">India's #1 Exam Prep Platform</span>
@@ -100,7 +100,7 @@ const ExamPrepLibrary = () => {
                             <p className="hero-subtitle">
                                 Master your exams with personalized mock tests, AI-powered analytics, and 1:1 mentorship - everything you need to crack your dream exam.
                             </p>
-                            <div className="flex flex-row gap-3 w-full mb-4 lg:mb-16 mt-2">
+                            <div className="flex flex-col sm:flex-row gap-3 w-full mb-6 lg:mb-16 mt-4">
                                 <button className="btn-primary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:min-w-[200px] lg:px-12 bg-gradient-to-br from-[#173CBA] to-[#00C798] text-white rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-blue-600 hover:shadow-lg">
                                     Start Free Mock Test <ArrowRight className="w-5 h-5 lg:w-5 lg:h-5" />
                                 </button>
@@ -109,22 +109,22 @@ const ExamPrepLibrary = () => {
                                 </button>
                             </div>
 
-                            <div className="hero-stats grid grid-cols-1 sm:grid-cols-3 gap-4 lg:flex lg:gap-10 mt-2 lg:mt-0 lg:mb-0">
+                            <div className="grid grid-cols-3 gap-2 lg:flex lg:gap-10 mt-2 lg:mt-0 lg:mb-0 w-full overflow-hidden">
                                 {stats.map((stat, index) => (
-                                    <div key={index} className="stat-item">
-                                        <div className="stat-icon-wrapper">
-                                            {stat.icon}
+                                    <div key={index} className="flex flex-col lg:flex-row items-center gap-1 lg:gap-3 bg-white/50 lg:bg-transparent p-2 lg:p-0 rounded-xl lg:rounded-none border border-white/40 lg:border-transparent text-center lg:text-left">
+                                        <div className="bg-white tracking-tighter w-8 h-8 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl flex items-center justify-center shadow-sm text-blue-600 shrink-0">
+                                            {React.cloneElement(stat.icon, { className: 'w-4 h-4 lg:w-5 lg:h-5' })}
                                         </div>
-                                        <div className="stat-info">
-                                            <span className="stat-value">{stat.value}</span>
-                                            <span className="stat-label">{stat.label}</span>
+                                        <div className="flex flex-col mt-1 lg:mt-0 items-center lg:items-start text-center lg:text-left">
+                                            <span className="text-[14px] lg:text-lg font-bold text-slate-900 leading-tight">{stat.value}</span>
+                                            <span className="text-[9px] lg:text-sm text-slate-600 font-bold leading-tight uppercase lg:capitalize tracking-tight lg:tracking-normal mt-0.5">{stat.label}</span>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        <div ref={constraintsRef} className="absolute inset-0 z-0 opacity-30 lg:opacity-100 pointer-events-none lg:pointer-events-auto lg:relative h-full lg:h-[500px] w-full flex items-center justify-center overflow-hidden lg:overflow-visible">
+                        <div ref={constraintsRef} className="hidden lg:flex relative opacity-100 h-[350px] lg:h-[500px] w-full items-center justify-center overflow-hidden lg:overflow-visible order-last mt-6 lg:mt-0">
                             <div className="absolute -top-10 -right-10 w-72 h-72 bg-blue-600/20 rounded-full blur-[80px]"></div>
                             <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-blue-400/20 rounded-full blur-[80px]"></div>
 
@@ -144,7 +144,7 @@ const ExamPrepLibrary = () => {
                                     rotate: { repeat: Infinity, duration: 15, ease: "easeInOut" }
                                 }}
                                 style={{ cursor: "grab" }}
-                                className="absolute top-0 right-0 lg:top-0 lg:right-10 z-20 glass-card p-4 lg:p-5 rounded-2xl shadow-xl w-44 lg:w-48 scale-[0.65] lg:scale-100 origin-top-right block"
+                                className="hidden lg:block absolute top-0 right-0 lg:top-0 lg:right-10 z-20 glass-card p-4 lg:p-5 rounded-2xl shadow-xl w-44 lg:w-48 scale-[0.65] lg:scale-100 origin-top-right"
                             >
                                 <div className="flex justify-between items-center mb-3">
                                     <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Test Progress</h3>
@@ -178,7 +178,7 @@ const ExamPrepLibrary = () => {
                                     rotate: { repeat: Infinity, duration: 18, ease: "easeInOut" }
                                 }}
                                 style={{ cursor: "grab" }}
-                                className="absolute bottom-20 left-0 lg:bottom-12 lg:left-4 z-20 glass-card p-4 lg:p-5 rounded-2xl shadow-xl w-48 lg:w-64 scale-[0.65] lg:scale-100 origin-bottom-left block"
+                                className="hidden lg:block absolute bottom-20 left-0 lg:bottom-12 lg:left-4 z-20 glass-card p-4 lg:p-5 rounded-2xl shadow-xl w-48 lg:w-64 scale-[0.65] lg:scale-100 origin-bottom-left"
                             >
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wide">Leaderboard</h3>
@@ -220,7 +220,7 @@ const ExamPrepLibrary = () => {
                                     y: { repeat: Infinity, duration: 20, ease: "easeInOut" }
                                 }}
                                 style={{ zIndex: 10, cursor: "grab" }}
-                                className="absolute top-0 left-0 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:translate-y-0 glass-card p-4 lg:p-6 rounded-2xl shadow-2xl w-56 lg:w-80 border-t-4 border-t-[#113cbb] scale-[0.65] lg:scale-100 origin-top-left block"
+                                className="hidden lg:block absolute top-0 left-0 lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:translate-y-0 glass-card p-4 lg:p-6 rounded-2xl shadow-2xl w-56 lg:w-80 border-t-4 border-t-[#113cbb] scale-[0.65] lg:scale-100 origin-top-left"
                             >
                                 <div className="flex justify-between items-end mb-6">
                                     <div>
@@ -284,7 +284,7 @@ const ExamPrepLibrary = () => {
                                     rotate: { repeat: Infinity, duration: 16, ease: "easeInOut" }
                                 }}
                                 style={{ cursor: "grab" }}
-                                className="absolute bottom-16 right-0 lg:bottom-0 lg:right-4 z-30 glass-card p-3 lg:p-4 rounded-xl shadow-lg w-48 lg:w-60 scale-[0.65] lg:scale-100 origin-bottom-right block pointer-events-auto"
+                                className="hidden lg:block absolute bottom-16 right-0 lg:bottom-0 lg:right-4 z-30 glass-card p-3 lg:p-4 rounded-xl shadow-lg w-48 lg:w-60 scale-[0.65] lg:scale-100 origin-bottom-right pointer-events-auto"
                             >
                                 <div className="flex items-center gap-2 mb-3">
                                     <div className="flex -space-x-2">

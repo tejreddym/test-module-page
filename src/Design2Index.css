@@ -103,10 +103,22 @@ button {
   /* 1000px */
   margin: 0 auto;
   height: 35em;
-  /* Reduced height from 50em to fit all cards better */
-  /* This viewport-aware scaling clamps off on desktops but shrinks fluidly indefinitely for phones */
+  /* Keeps aspect ratio steady */
   font-size: min(1.2vw, 14px);
-  /* Slightly reduced font scale */
+}
+
+@media (max-width: 768px) {
+  .steps-container {
+    /* To fill 100vh on mobile, we increase the base font-size multiplier. */
+    /* 35em * font-size ≈ 100vh -> font-size ≈ 100vw/35 but we use dynamic vh for closer fit */
+    font-size: min(2.5vh, 2vw, 12px);
+    width: 100%;
+    /* Ensure it spans */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    transform: scale(1.15);
+    /* Boost the overall visual size */
+  }
 }
 
 .connector-svg {

@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PageContent = ({ day }) => (
-    <div className="w-full h-full flex flex-col p-6 sm:p-8 justify-center relative bg-[#f4f9ff] border-b-[3px] border-slate-200 rounded-xl">
-        {/* Logo Placeholder */}
-        <div className="absolute top-6 left-8 flex items-center gap-2">
-            <div className="w-4 h-4 rounded-full bg-[#d2efee]"></div>
-            <div className="text-[10px] font-bold text-slate-800 leading-tight">
-                LOGO HERE<br /><span className="text-slate-500 font-normal">Tagline Here</span>
-            </div>
+    <div className="w-full h-full flex flex-col p-6 sm:p-8 justify-center relative bg-yellow-50 border-b-[3px] border-slate-200 rounded-xl">
+        {/* College Mentor Logo */}
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-8 flex items-center gap-2 z-10 w-24 sm:w-auto">
+            <img
+                src="https://collegementor.com/static/media/College%20Mentor_Final_Logo-01.ae0ff9c1ffa9fc9fac3e.png"
+                alt="College Mentor"
+                className="w-full h-auto max-h-6 sm:max-h-8 object-contain"
+            />
         </div>
 
         {/* Month Badge */}
-        <div className="mt-8 mb-6 inline-block bg-[#d2efee] text-slate-800 px-6 py-2 rounded-full font-black text-lg tracking-widest shadow-md mx-auto w-max">
+        <div className="mt-10 sm:mt-8 mb-4 sm:mb-6 inline-block bg-[#d2efee] text-slate-800 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full font-black text-sm sm:text-lg tracking-widest shadow-md mx-auto w-max relative z-0">
             {day.month}
         </div>
 
@@ -20,17 +21,17 @@ const PageContent = ({ day }) => (
         <div className="flex flex-row items-center justify-between w-full mt-4 h-full pb-4 px-2">
 
             {/* Left Side: Date */}
-            <div className="flex flex-col items-center justify-center w-[45%] h-full border-r-2 border-slate-100 pr-4">
-                <span className="text-xl font-bold text-slate-400 uppercase tracking-widest mb-[-5px]">{day.day}</span>
-                <span className="text-7xl font-black text-slate-800 tracking-tighter leading-none">{day.date}</span>
+            <div className="flex flex-col items-center justify-center w-[40%] sm:w-[45%] h-full border-r-2 border-slate-100 pr-2 sm:pr-4">
+                <span className="text-lg sm:text-xl font-bold text-slate-400 uppercase tracking-widest mb-[-5px]">{day.day}</span>
+                <span className="text-5xl sm:text-7xl font-black text-slate-800 tracking-tighter leading-none">{day.date}</span>
             </div>
 
             {/* Right Side: Topic with Gradient Background */}
-            <div className="flex flex-col items-start justify-center w-[55%] h-full pl-6">
-                <div className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-2 opacity-80">
+            <div className="flex flex-col items-start justify-center w-[60%] sm:w-[55%] h-full pl-3 sm:pl-6">
+                <div className="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-widest mb-1 sm:mb-2 opacity-80">
                     Topic of the Day
                 </div>
-                <div className="text-xl font-black text-white bg-gradient-to-br from-[#173CBA] to-[#00C798] px-5 py-3 rounded-2xl w-full shadow-lg shadow-[#00C798]/20 border border-white/20 break-words whitespace-normal leading-tight">
+                <div className="text-sm sm:text-xl font-black text-white bg-gradient-to-br from-[#173CBA] to-[#00C798] px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl w-full shadow-lg shadow-[#00C798]/20 border border-white/20 break-words whitespace-normal leading-tight">
                     {day.topic}
                 </div>
             </div>
@@ -90,7 +91,7 @@ const DeskCalendar3D = () => {
                                     zIndex: { duration: 0 }
                                 }
                             }}
-                            className="absolute inset-0 rounded-xl shadow-md origin-top transform-style-3d bg-[#f4f9ff] overflow-hidden"
+                            className="absolute inset-0 rounded-xl shadow-md origin-top transform-style-3d bg-yellow-50 overflow-hidden"
                             style={{ backfaceVisibility: 'hidden', transformOrigin: 'top center' }}
                         >
                             <PageContent day={schedule[currentIndex]} />

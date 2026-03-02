@@ -57,12 +57,16 @@
     color: #94a3b8;
     font-size: 0.95rem;
     font-weight: 500;
+    flex-wrap: wrap;
+    /* Added to prevent overflow */
 }
 
 .test-quick-meta span {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    white-space: nowrap;
+    /* Keep icon and text together */
 }
 
 /* Content */
@@ -338,5 +342,42 @@
 
     .instructions-sidebar {
         order: -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .instructions-page {
+        padding: 1rem;
+    }
+
+    .instructions-header {
+        padding: 1.5rem;
+    }
+
+    .test-title-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .test-quick-meta {
+        gap: 1rem;
+    }
+
+    .instructions-content {
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    .instructions-footer {
+        padding: 1.5rem;
+    }
+
+    .begin-test-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+        /* Make it slimmer */
+        font-size: 1rem;
+        /* Scale down text slightly */
+        border-radius: 12px;
     }
 }
