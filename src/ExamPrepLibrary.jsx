@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Target, Trophy } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
@@ -11,6 +11,7 @@ import FlashcardFAQ from './FlashcardFAQ';
 import StepDesign from './StepDesign';
 
 const ExamPrepLibrary = () => {
+    const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
     const constraintsRef = useRef(null);
     const stats = [
         { value: '10,000+', label: 'Students Mentored', icon: <Users size={20} /> },
@@ -104,7 +105,10 @@ const ExamPrepLibrary = () => {
                                 <button className="btn-primary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:min-w-[200px] lg:px-12 bg-gradient-to-br from-[#173CBA] to-[#00C798] text-white rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-blue-600 hover:shadow-lg">
                                     Start Free Mock Test <ArrowRight className="w-5 h-5 lg:w-5 lg:h-5" />
                                 </button>
-                                <button className="btn-secondary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:px-8 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-slate-50">
+                                <button
+                                    onClick={() => setIsPlanModalOpen(true)}
+                                    className="btn-secondary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:px-8 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-slate-50"
+                                >
                                     Explore Plans
                                 </button>
                             </div>
@@ -508,6 +512,44 @@ const ExamPrepLibrary = () => {
 
                 {/* FAQ Section */}
                 <FlashcardFAQ />
+
+                {/* Explore Plans Modal */}
+                {isPlanModalOpen && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+                        <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl relative transition-all">
+                            <div className="p-4 sm:p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Choose Your Plan</h3>
+                                <button onClick={() => setIsPlanModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                                    <span className="material-symbols-outlined text-2xl">close</span>
+                                </button>
+                            </div>
+                            <div className="p-4 sm:p-6 space-y-4 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                                {/* Pro Plan */}
+                                <div className="border border-blue-500 rounded-xl p-4 sm:p-5 bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/10 relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] sm:text-xs font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Most Popular</div>
+                                    <h4 className="font-bold text-lg text-blue-700 dark:text-blue-400 mb-2">Pro Plan</h4>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 sm:mb-5">Full access to mock tests, analytics, and 1:1 mentorship.</p>
+                                    <div className="flex items-end gap-2 mb-4 sm:mb-5">
+                                        <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">₹2,999</div>
+                                        <div className="text-sm font-medium text-slate-500 pb-1">/year</div>
+                                    </div>
+                                    <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">Select Pro Plan</button>
+                                </div>
+
+                                {/* Basic Plan */}
+                                <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-4 sm:p-5 hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+                                    <h4 className="font-bold text-lg text-slate-800 dark:text-slate-200 mb-2">Basic Plan</h4>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 sm:mb-5">Access to chapter-wise mock tests and basic analytics.</p>
+                                    <div className="flex items-end gap-2 mb-4 sm:mb-5">
+                                        <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">₹999</div>
+                                        <div className="text-sm font-medium text-slate-500 pb-1">/year</div>
+                                    </div>
+                                    <button className="w-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 py-3 rounded-lg font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Select Basic Plan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
             </main >
         </div >

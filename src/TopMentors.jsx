@@ -114,7 +114,10 @@ const TopMentors = () => {
                 </div>
 
                 <div className="view-all-container">
-                    <button className="btn-view-all">
+                    <button
+                        className="btn-view-all"
+                        onClick={() => window.open('https://mentoring-landing-sections.tejreddym.cv/', '_blank', 'noopener,noreferrer')}
+                    >
                         View all mentors <ArrowUpRight size={18} />
                     </button>
                 </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PageContent = ({ day }) => (
-    <div className="w-full h-full flex flex-col p-6 sm:p-8 justify-center relative bg-yellow-50 border-b-[3px] border-slate-200 rounded-xl">
+    <div className="w-full h-full flex flex-col p-6 sm:p-8 justify-center relative bg-[#f4f9ff] border-b-[3px] border-slate-200 rounded-xl">
         {/* College Mentor Logo */}
         <div className="absolute top-4 left-4 sm:top-6 sm:left-8 flex items-center gap-2 z-10 w-24 sm:w-auto">
             <img
@@ -91,7 +91,7 @@ const DeskCalendar3D = () => {
                                     zIndex: { duration: 0 }
                                 }
                             }}
-                            className="absolute inset-0 rounded-xl shadow-md origin-top transform-style-3d bg-yellow-50 overflow-hidden"
+                            className="absolute inset-0 rounded-xl shadow-md origin-top transform-style-3d bg-[#f4f9ff] overflow-hidden"
                             style={{ backfaceVisibility: 'hidden', transformOrigin: 'top center' }}
                         >
                             <PageContent day={schedule[currentIndex]} />
