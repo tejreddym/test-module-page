@@ -6,12 +6,12 @@ import './AllStreams.css';
 const AllStreams = () => {
     const getStreamPath = (name) => {
         const streamPaths = {
-            'Engineering': '/stream-mock-tests',
-            'Medical': '/stream-mock-tests',
-            'Management': '/stream-mock-tests',
-            'Commerce': '/stream-mock-tests',
-            'Law & UPSC': '/stream-mock-tests',
-            'Civil Services': '/stream-mock-tests'
+            'Engineering': '/engineering-exams',
+            'Medical': '/engineering-exams',
+            'Management': '/engineering-exams',
+            'Commerce': '/engineering-exams',
+            'Law & UPSC': '/engineering-exams',
+            'Civil Services': '/engineering-exams'
         };
         return streamPaths[name] || '/select-stream';
     };

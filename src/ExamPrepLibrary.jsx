@@ -61,7 +61,7 @@ const ExamPrepLibrary = () => {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative hero-gradient overflow-hidden lg:overflow-visible pt-10 pb-16 lg:pt-16 lg:pb-24 px-4 lg:px-6 min-h-screen lg:min-h-[calc(100vh-80px)] lg:h-[calc(100vh-80px)] lg:max-h-[100vh] flex items-center hero-with-dots-bottom border-b border-transparent">
+                <section className="relative hero-gradient overflow-hidden lg:overflow-visible pt-4 pb-16 lg:pt-16 lg:pb-24 px-4 lg:px-6 min-h-[calc(100vh-60px)] lg:min-h-[calc(100vh-80px)] lg:h-[calc(100vh-80px)] lg:max-h-[100vh] flex items-center hero-with-dots-bottom border-b border-transparent">
 
                     <style dangerouslySetInnerHTML={{
                         __html: `
@@ -88,7 +88,7 @@ const ExamPrepLibrary = () => {
                         }
                     `}} />
 
-                    <div className="relative w-full h-full z-10 max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-6 mt-16 lg:mt-0 lg:py-0">
+                    <div className="relative w-full h-full z-10 max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-6 mt-4 lg:mt-0 lg:py-0">
                         <div className="z-10 text-left w-full h-full flex flex-col justify-center gap-2 lg:gap-0 lg:justify-center">
                             <div className="hero-badge">
                                 <span className="badge-icon">🎯</span>
@@ -349,7 +349,7 @@ const ExamPrepLibrary = () => {
                                         <p className="text-cm-maths/10 max-w-sm drop-shadow-sm text-sm font-medium">JEE Mains, Advanced, BITSAT, GATE & more. Comprehensive coverage.</p>
                                     </div>
                                     <div className="mt-auto">
-                                        <Link to="/stream-mock-tests" className="w-full bg-cm-maths text-white px-5 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-cm-maths/90 transition-colors shadow-lg group-hover:shadow-cm-maths/50 transform duration-300 backdrop-blur-sm border border-cm-maths/50">
+                                        <Link to="/engineering-exams" className="w-full bg-cm-maths text-white px-5 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-cm-maths/90 transition-colors shadow-lg group-hover:shadow-cm-maths/50 transform duration-300 backdrop-blur-sm border border-cm-maths/50">
                                             View Tests <span className="material-symbols-outlined">arrow_outward</span>
                                         </Link>
                                     </div>
@@ -369,7 +369,7 @@ const ExamPrepLibrary = () => {
                                         <h3 className="text-xl font-black mb-1 drop-shadow-md">Medical</h3>
                                         <p className="text-teal-50/90 text-sm mb-2 drop-shadow-sm font-medium">NEET UG, PG, AIIMS exams.</p>
                                     </div>
-                                    <Link to="/stream-mock-tests" className="block text-center w-full bg-cm-teal text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-cm-teal/90 transition-colors shadow-lg group-hover:shadow-cm-teal/50 backdrop-blur-sm border border-cm-teal/40">
+                                    <Link to="/engineering-exams" className="block text-center w-full bg-cm-teal text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-cm-teal/90 transition-colors shadow-lg group-hover:shadow-cm-teal/50 backdrop-blur-sm border border-cm-teal/40">
                                         View Tests
                                     </Link>
                                 </div>
@@ -389,7 +389,7 @@ const ExamPrepLibrary = () => {
                                     </div>
                                 </div>
                                 <div className="absolute inset-0 bg-blue-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20">
-                                    <Link to="/stream-mock-tests" className="bg-white text-cm-physics px-6 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">View Tests</Link>
+                                    <Link to="/engineering-exams" className="bg-white text-cm-physics px-6 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">View Tests</Link>
                                 </div>
                             </div>
 
@@ -406,7 +406,7 @@ const ExamPrepLibrary = () => {
                                     </div>
                                 </div>
                                 <div className="absolute inset-0 bg-purple-900/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm z-20">
-                                    <Link to="/stream-mock-tests" className="bg-white text-cm-logical px-6 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">View Tests</Link>
+                                    <Link to="/engineering-exams" className="bg-white text-cm-logical px-6 py-2 rounded-lg font-bold text-sm shadow-xl hover:scale-105 transition-transform">View Tests</Link>
                                 </div>
                             </div>
                         </div>

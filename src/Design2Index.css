@@ -133,8 +133,8 @@ button {
 
 .step-card {
   position: absolute;
-  width: 20em;
-  /* 320px */
+  width: calc(20em - 17px);
+  /* 320px - 17px */
   background: transparent;
   padding: 1em;
   z-index: 2;
@@ -142,8 +142,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 14em;
-  /* Enforce uniform card container height */
+  min-height: calc(14em - 17px);
+  /* Switch to min-height to prevent overflow */
 }
 
 .step-card:hover {
@@ -185,9 +185,8 @@ button {
   background: #ffffff;
   border-radius: 1.5em;
   /* 24px */
-  padding: 3em 1.5em 1.5em 1.5em;
-  /* Increased top padding to consistently avoid the badge */
-  /* adequate top padding for the centered absolute badge */
+  padding: 2.5em 1.5em 1em 1.5em;
+  /* Reduced top and bottom padding to fit text */
   box-shadow: 0 0.6em 1.8em rgba(0, 0, 0, 0.05);
   /* 10px 30px */
   position: relative;
@@ -210,10 +209,11 @@ button {
   font-size: 1.25em;
   /* 20px */
   font-weight: 800;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.4em;
+  /* Reduced from 0.6em */
   color: #111827;
-  min-height: 2.8em;
-  /* Reserve exactly two lines */
+  min-height: 2.4em;
+  /* Reduced from 2.8em */
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronLeft, ChevronDown, Search, Filter, Clock, FileText, Award, PlayCircle } from 'lucide-react';
 import './StreamMockTests.css';
 
 const StreamMockTests = () => {
-    const tests = [
+    const location = useLocation();
+    const examName = location.state?.exam || 'Engineering';
+
+    const baseTests = [
         {
             id: 1,
             title: 'JEE Main 2024 - Full Syllabus Mock 1',
@@ -64,6 +67,11 @@ const StreamMockTests = () => {
         }
     ];
 
+    const tests = baseTests.map(t => ({
+        ...t,
+        title: examName !== 'Engineering' ? t.title.replace(/JEE Main|JEE Advanced|Physics|Mathematics|Chemistry/, examName) : t.title
+    }));
+
     const filters = ['All Tests', 'Full Mock', 'Subject Wise'];
 
     return (
@@ -72,11 +80,8 @@ const StreamMockTests = () => {
 
             <div className="all-tests-container">
                 <nav className="breadcrumb">
-                    <Link to="/stream-wise-tests" className="back-link">
-                        <ChevronLeft size={20} /> Back to Streams
-                    </Link>
-                    <h1>Engineering Mock Tests</h1>
-                    <p>Access our premium collection of JEE and other top engineering entrance tests.</p>
+                    <h1>{examName} Mock Tests</h1>
+                    <p>Access our premium collection of {examName} entrance tests.</p>
                 </nav>
 
                 <div className="tests-content">
@@ -94,19 +99,6 @@ const StreamMockTests = () => {
                                     <span>{filter}</span>
                                 </label>
                             ))}
-                        </div>
-
-                        <div className="filter-group">
-                            <h3>Level</h3>
-                            <label className="filter-option">
-                                <input type="checkbox" /> <span>Beginner</span>
-                            </label>
-                            <label className="filter-option">
-                                <input type="checkbox" defaultChecked /> <span>Intermediate</span>
-                            </label>
-                            <label className="filter-option">
-                                <input type="checkbox" /> <span>Advanced</span>
-                            </label>
                         </div>
                     </aside>
 

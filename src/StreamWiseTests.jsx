@@ -1,8 +1,10 @@
 import React from 'react';
 import { ArrowRight, Flame, GraduationCap, Stethoscope, Briefcase, Scale } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './StreamWiseTests.css';
 
 const StreamWiseTests = () => {
+    const navigate = useNavigate();
     return (
         <section className="py-24 px-6 bg-white dark:bg-slate-950">
             <div className="max-w-7xl mx-auto">
@@ -39,7 +41,7 @@ const StreamWiseTests = () => {
                                 <p className="text-orange-100 max-w-sm">JEE Mains, Advanced, BITSAT, GATE & more. Comprehensive coverage for top institutes.</p>
                             </div>
                             <div className="mt-auto pt-8">
-                                <button className="w-full bg-white text-orange-600 px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-orange-50 transition-colors shadow-lg shadow-orange-900/20 group-hover:scale-[1.02] transform duration-200" onClick={() => window.location.hash = '#stream-tests'}>
+                                <button className="w-full bg-white text-orange-600 px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-orange-50 transition-colors shadow-lg shadow-orange-900/20 group-hover:scale-[1.02] transform duration-200" onClick={() => navigate('/engineering-exams')}>
                                     View Tests <ArrowRight size={18} />
                                 </button>
                             </div>
@@ -64,7 +66,7 @@ const StreamWiseTests = () => {
                                     <span className="text-[10px] bg-white/10 px-2 py-1 rounded font-semibold">Chemistry</span>
                                 </div>
                             </div>
-                            <button className="w-full bg-white text-teal-600 px-4 py-3 rounded-xl font-bold text-sm hover:bg-teal-50 transition-colors shadow-lg group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 duration-300" onClick={() => window.location.hash = '#stream-tests'}>
+                            <button className="w-full bg-white text-teal-600 px-4 py-3 rounded-xl font-bold text-sm hover:bg-teal-50 transition-colors shadow-lg group-hover:translate-y-0 translate-y-2 opacity-0 group-hover:opacity-100 duration-300" onClick={() => navigate('/engineering-exams')}>
                                 Explore
                             </button>
                         </div>
@@ -84,7 +86,7 @@ const StreamWiseTests = () => {
                             </div>
                         </div>
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px] z-20">
-                            <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-bold text-sm hover:scale-105 transition-transform" onClick={() => window.location.hash = '#stream-tests'}>View Details</button>
+                            <button className="bg-white text-blue-600 px-6 py-2 rounded-lg font-bold text-sm hover:scale-105 transition-transform" onClick={() => navigate('/engineering-exams')}>View Details</button>
                         </div>
                     </div>
 
@@ -101,7 +103,7 @@ const StreamWiseTests = () => {
                             </div>
                         </div>
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px] z-20">
-                            <button className="bg-white text-purple-600 px-6 py-2 rounded-lg font-bold text-sm hover:scale-105 transition-transform" onClick={() => window.location.hash = '#stream-tests'}>View Details</button>
+                            <button className="bg-white text-purple-600 px-6 py-2 rounded-lg font-bold text-sm hover:scale-105 transition-transform" onClick={() => navigate('/engineering-exams')}>View Details</button>
                         </div>
                     </div>
                 </div>

@@ -396,18 +396,45 @@ const MockExamInterface = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="q-content-main">
-                                    <p className="q-instruction-text">
-                                        {currentQuestion.question}
-                                    </p>
-                                    {currentQuestion.hint && (
-                                        <p className="q-hint-text italic text-gray-500 text-sm mb-4">
-                                            ({currentQuestion.hint})
+                                <div className={currentQuestion.imageUrl ? "q-layout-split" : "q-content-main"}>
+                                    <div className="q-content-left" style={{ flex: 1 }}>
+                                        <p className="q-instruction-text">
+                                            {currentQuestion.question}
                                         </p>
-                                    )}
+                                        {currentQuestion.hint && (
+                                            <p className="q-hint-text italic text-gray-500 text-sm mb-4">
+                                                ({currentQuestion.hint})
+                                            </p>
+                                        )}
+
+                                        <div className={`mcq-options-v3 ${currentQuestion.options?.some(o => o.imageUrl) ? 'opt-grid-v3' : ''}`}>
+                                            {currentQuestion.options?.map(opt => (
+                                                <label key={opt.id} className={`mcq-opt-v3 ${opt.imageUrl ? 'opt-card-v3' : ''} ${tempSelection === opt.id ? 'selected' : ''}`}>
+                                                    <input
+                                                        type="radio"
+                                                        name="exam-mcq"
+                                                        checked={tempSelection === opt.id}
+                                                        onChange={() => setTempSelection(opt.id)}
+                                                    />
+                                                    <div className="opt-header-v3">
+                                                        <div className="opt-radio-circle">
+                                                            {tempSelection === opt.id ? <div className="dot-inner"></div> : opt.id}
+                                                        </div>
+                                                        <span className="opt-content"><strong>{opt.imageUrl ? `Option ${opt.id}` : opt.id}.</strong> {!opt.imageUrl && opt.text}</span>
+                                                        {tempSelection === opt.id && <Check size={18} className="check-icon-v3" />}
+                                                    </div>
+                                                    {opt.imageUrl && (
+                                                        <div className="opt-img-body">
+                                                            <img src={opt.imageUrl} alt={`Option ${opt.id}`} />
+                                                        </div>
+                                                    )}
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
 
                                     {currentQuestion.imageUrl && (
-                                        <div className="q-image-container q-image-inline">
+                                        <div className="q-image-container">
                                             <div className="q-img-wrapper">
                                                 <img src={currentQuestion.imageUrl} alt="Question Diagram" />
                                             </div>
@@ -417,31 +444,6 @@ const MockExamInterface = () => {
                                             </div>
                                         </div>
                                     )}
-
-                                    <div className={`mcq-options-v3 ${currentQuestion.options?.some(o => o.imageUrl) ? 'opt-grid-v3' : ''}`}>
-                                        {currentQuestion.options?.map(opt => (
-                                            <label key={opt.id} className={`mcq-opt-v3 ${opt.imageUrl ? 'opt-card-v3' : ''} ${tempSelection === opt.id ? 'selected' : ''}`}>
-                                                <input
-                                                    type="radio"
-                                                    name="exam-mcq"
-                                                    checked={tempSelection === opt.id}
-                                                    onChange={() => setTempSelection(opt.id)}
-                                                />
-                                                <div className="opt-header-v3">
-                                                    <div className="opt-radio-circle">
-                                                        {tempSelection === opt.id ? <div className="dot-inner"></div> : opt.id}
-                                                    </div>
-                                                    <span className="opt-content"><strong>{opt.imageUrl ? `Option ${opt.id}` : opt.id}.</strong> {!opt.imageUrl && opt.text}</span>
-                                                    {tempSelection === opt.id && <Check size={18} className="check-icon-v3" />}
-                                                </div>
-                                                {opt.imageUrl && (
-                                                    <div className="opt-img-body">
-                                                        <img src={opt.imageUrl} alt={`Option ${opt.id}`} />
-                                                    </div>
-                                                )}
-                                            </label>
-                                        ))}
-                                    </div>
                                 </div>
                             )}
                         </div>

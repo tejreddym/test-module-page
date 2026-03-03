@@ -29,6 +29,7 @@ import TestAnalytics from './TestAnalytics'
 import StudyPlanner from './StudyPlanner'
 import UserProfile from './UserProfile'
 import RankPredictor from './RankPredictor'
+import EngineeringExams from './EngineeringExams'
 
 function AppContent() {
   const location = useLocation()
@@ -76,6 +77,7 @@ function AppContent() {
           <Route path="/study-planner" element={<StudyPlanner />} />
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/rank-predictor" element={<RankPredictor />} />
+          <Route path="/engineering-exams" element={<EngineeringExams />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

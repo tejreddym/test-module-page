@@ -138,13 +138,7 @@ const ExamSetup = () => {
                 {/* Steps Tracker */}
                 <StepsTracker currentStep={3} />
 
-                {/* Header Titles */}
-                <div className="text-center mb-10">
-                    <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-4 tracking-tight">Personalize Your Focus</h1>
-                    <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">
-                        Select the subjects you want to focus on and customize specific chapters to generate your tailored study plan.
-                    </p>
-                </div>
+                {/* Header Titles - Removed as per user request */}
 
                 {/* Main Two-Panel Layout */}
                 <div className="flex flex-col lg:flex-row gap-8 w-full">
