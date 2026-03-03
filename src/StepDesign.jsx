@@ -7,22 +7,70 @@ const StepDesign = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        const currentSection = sectionRef.current;
+        let preventScrollRef = null;
+        let preventKeysRef = null;
+        let lockTimeout = null;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting && !isVisible) {
                     setIsVisible(true);
+
+                    // Lock scrolling when the section becomes visible
+                    const preventScroll = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    };
+
+                    const preventKeys = (e) => {
+                        const keys = ['ArrowUp', 'ArrowDown', 'Space', 'PageUp', 'PageDown', 'Home', 'End'];
+                        if (keys.includes(e.code)) {
+                            e.preventDefault();
+                            return false;
+                        }
+                    };
+
+                    preventScrollRef = preventScroll;
+                    preventKeysRef = preventKeys;
+
+                    // Smoothly scroll to center the section
+                    entry.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Add listeners to lock scroll
+                    window.addEventListener('wheel', preventScroll, { passive: false });
+                    window.addEventListener('touchmove', preventScroll, { passive: false });
+                    window.addEventListener('keydown', preventKeys, { passive: false });
+
+                    // Unlock after 4.2 seconds (animation duration + buffer)
+                    lockTimeout = setTimeout(() => {
+                        window.removeEventListener('wheel', preventScroll);
+                        window.removeEventListener('touchmove', preventScroll);
+                        window.removeEventListener('keydown', preventKeys);
+                        preventScrollRef = null;
+                        preventKeysRef = null;
+                    }, 4200);
                 }
             },
             { threshold: 0.3 } // Trigger when 30% of the section is visible
         );
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
+        if (currentSection) {
+            observer.observe(currentSection);
         }
 
         return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
+            if (currentSection) {
+                observer.unobserve(currentSection);
+            }
+            if (lockTimeout) clearTimeout(lockTimeout);
+            if (preventScrollRef) {
+                window.removeEventListener('wheel', preventScrollRef);
+                window.removeEventListener('touchmove', preventScrollRef);
+            }
+            if (preventKeysRef) {
+                window.removeEventListener('keydown', preventKeysRef);
             }
         };
     }, [isVisible]);

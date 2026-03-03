@@ -102,9 +102,9 @@ const ExamPrepLibrary = () => {
                                 Master your exams with personalized mock tests, AI-powered analytics, and 1:1 mentorship - everything you need to crack your dream exam.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 w-full mb-6 lg:mb-16 mt-4">
-                                <button className="btn-primary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:min-w-[200px] lg:px-12 bg-gradient-to-br from-[#173CBA] to-[#00C798] text-white rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-blue-600 hover:shadow-lg">
+                                <Link to="/all-streams" className="btn-primary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:min-w-[200px] lg:px-12 text-white rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all text-center">
                                     Start Free Mock Test <ArrowRight className="w-5 h-5 lg:w-5 lg:h-5" />
-                                </button>
+                                </Link>
                                 <button
                                     onClick={() => setIsPlanModalOpen(true)}
                                     className="btn-secondary flex-1 min-w-0 text-[15px] px-2 lg:text-lg lg:px-8 bg-white border border-slate-200 text-slate-700 rounded-lg font-medium flex items-center justify-center gap-2 h-14 lg:h-[50px] transition-all hover:bg-slate-50"
@@ -451,27 +451,59 @@ const ExamPrepLibrary = () => {
 
                     <div className="overflow-hidden px-6 py-4">
                         <div className="max-w-[1400px] mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center relative">
-                            {/* Left Card: Text Content */}
+                            {/* Left Card: Text Content (NEW ORGANIC BLOB DESIGN) */}
                             <motion.div
-                                initial={{ x: -100, opacity: 0 }}
-                                whileInView={{ x: 0, opacity: 1 }}
+                                initial={{ scale: 0.8, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
                                 viewport={{ once: true }}
-                                transition={{
-                                    duration: 1.2,
-                                    ease: "easeOut"
+                                animate={{
+                                    y: [0, -15, 0],
+                                    borderRadius: [
+                                        "60% 40% 30% 70% / 60% 30% 70% 40%",
+                                        "30% 70% 70% 30% / 30% 30% 70% 70%",
+                                        "50% 50% 20% 80% / 25% 80% 20% 75%",
+                                        "60% 40% 30% 70% / 60% 30% 70% 40%"
+                                    ]
                                 }}
-                                className="bg-[#E8F2FF] rounded-[3rem] p-8 lg:p-10 relative shadow-2xl z-10 overflow-hidden h-full flex flex-col justify-center group border border-blue-100"
+                                transition={{
+                                    scale: { duration: 1.2, ease: "easeOut" },
+                                    opacity: { duration: 1.2 },
+                                    y: { repeat: Infinity, duration: 8, ease: "easeInOut" },
+                                    borderRadius: { repeat: Infinity, duration: 12, ease: "easeInOut" }
+                                }}
+                                className="relative bg-gradient-to-br from-[#0F172A] via-[#1E1B4B] to-[#0F172A] w-full max-w-[460px] aspect-square mx-auto p-8 lg:p-12 shadow-[0_20px_50px_-12px_rgba(30,27,75,0.5)] z-10 overflow-hidden flex flex-col justify-center items-center text-center group border-[4px] border-indigo-500/30 backdrop-blur-3xl"
                             >
-                                <img src="/assets/images/study_planner_bg.png" alt="Study Planner Background" className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:scale-105 transition-transform duration-700" />
-                                <div className="absolute inset-0 bg-blue-500/5"></div>
+                                {/* Abstract Background Elements & Image */}
+                                <img src="/assets/images/study_planner_bg.png" alt="Study Planner Background" className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay pointer-events-none" />
+                                <div className="absolute top-0 right-0 w-full h-full bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-colors duration-700 pointer-events-none origin-center rotate-45"></div>
+                                <div className="absolute bottom-0 left-0 w-3/4 h-3/4 bg-teal-500/10 rounded-full blur-[60px] group-hover:bg-teal-500/20 transition-colors duration-700 pointer-events-none"></div>
+
+                                {/* Noise Texture Overlay */}
+                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
 
                                 <div className="relative z-10 w-full max-w-lg">
-                                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight font-serif tracking-wide text-[#173CBA]">Smart Study Planner</h3>
-                                    <p className="text-slate-600 text-base mb-6 leading-relaxed font-medium">
-                                        Organize your preparation with an automated schedule. We track your progress and adjust your goals daily to ensure you finish the syllabus 30 days before the exam.
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                                        <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                                        <span className="text-xs font-bold text-teal-300 uppercase tracking-widest">AI-Powered</span>
+                                    </div>
+
+                                    <h3 className="text-2xl lg:text-4xl font-black mb-3 leading-[1.1] tracking-tight text-white drop-shadow-lg">
+                                        Smart <br />
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Study Planner</span>
+                                    </h3>
+
+                                    <p className="text-slate-300 text-sm lg:text-base mb-6 leading-relaxed font-light px-2">
+                                        Organize your preparation with an automated schedule. We track your progress to ensure you finish <strong className="text-white font-semibold">30 days before the exam</strong>.
                                     </p>
-                                    <Link to="/select-stream" className="inline-flex items-center justify-center bg-gradient-to-r from-[#173CBA] to-[#00C798] text-white px-8 py-3 rounded-xl font-bold text-sm hover:scale-[1.02] hover:shadow-xl transition-all duration-300 w-full sm:w-auto">
-                                        Personalize My Schedule
+
+                                    <Link to="/select-stream" className="relative inline-flex group items-center justify-center w-full sm:w-auto">
+                                        {/* Button Glow Behind */}
+                                        <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-indigo-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                        {/* Actual Button */}
+                                        <div className="relative w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-teal-500 to-indigo-600 rounded-2xl flex items-center justify-center gap-2 border border-white/20 shadow-2xl group-hover:scale-[1.02] transform transition-all duration-300">
+                                            <span className="text-white font-bold text-sm tracking-wide">Personalize Schedule</span>
+                                            <span className="material-symbols-outlined text-white text-xs bg-white/20 p-1 rounded-full group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                        </div>
                                     </Link>
                                 </div>
                             </motion.div>

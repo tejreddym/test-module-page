@@ -176,15 +176,15 @@ const TestAnalytics = () => {
                         <p>Completed on Oct 24, 2023 • 3 Hours duration</p>
                     </div>
                     <div className="hero-actions">
-                        <button className="btn-secondary">
+                        <button className="ta-btn-secondary">
                             <Download size={18} strokeWidth={1.5} style={{ color: '#173CBA' }} />
                             <span style={{ color: '#173CBA', fontWeight: 500 }}>Download Report</span>
                         </button>
-                        <button className="btn-secondary" onClick={() => setShowSolutions(true)}>
+                        <button className="ta-btn-secondary" onClick={() => setShowSolutions(true)}>
                             <Eye size={18} strokeWidth={1.5} style={{ color: '#173CBA' }} />
                             <span style={{ color: '#173CBA', fontWeight: 500 }}>View Answer Key</span>
                         </button>
-                        <button className="btn-primary" onClick={() => navigate('/rank-predictor')}>
+                        <button className="ta-btn-primary" onClick={() => navigate('/rank-predictor')}>
                             <Sparkles size={16} /> Predict My Rank
                         </button>
                     </div>
@@ -586,7 +586,7 @@ const TestAnalytics = () => {
                     </div>
                     <div className="banner-actions">
                         <button className="btn-light" onClick={() => setShowPricing(true)}>View Plan</button>
-                        <button className="btn-primary border-0" onClick={() => navigate('/study-planner')}>Start Revision</button>
+                        <button className="ta-btn-primary border-0" onClick={() => navigate('/study-planner')}>Start Revision</button>
                     </div>
                 </div>
 

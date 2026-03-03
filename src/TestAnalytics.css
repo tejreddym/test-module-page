@@ -188,7 +188,7 @@ body {
     gap: 0.75rem;
 }
 
-.btn-secondary {
+.ta-btn-secondary {
     padding: 0.5rem 1rem;
     background: white;
     border: 1px solid #D1D5DB;
@@ -204,11 +204,11 @@ body {
     transition: background 0.2s;
 }
 
-.btn-secondary:hover {
+.ta-btn-secondary:hover {
     background: #F9FAFB;
 }
 
-.btn-primary {
+.ta-btn-primary {
     padding: 0.5rem 1rem;
     background: var(--primary);
     color: white;
@@ -224,7 +224,7 @@ body {
     transition: transform 0.2s, background 0.2s;
 }
 
-.btn-primary:hover {
+.ta-btn-primary:hover {
     background: #4338ca;
     transform: translateY(-2px);
 }

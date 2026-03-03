@@ -296,8 +296,9 @@ button {
 }
 
 .btn-primary:hover {
-  background-color: #2563eb;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(23, 60, 186, 0.3);
 }
 
 .btn-secondary {
